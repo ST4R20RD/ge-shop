@@ -1,9 +1,7 @@
-import { Navbar } from "../../components";
-
 export function Home() {
   return (
-    <div className="bg-neutral-600 w-screen h-screen">
-      <Navbar />
+    <div className="flex justify-center content-center items-center bg-neutral-600 w-full h-screen">
+      Home
     </div>
   );
 }

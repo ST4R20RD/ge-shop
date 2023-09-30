@@ -1,3 +1,3 @@
 export function AddCartPopup() {
-  return <div>AddCartPopup</div>;
+  return <div>Checkout or Continue Shopping</div>;
 }

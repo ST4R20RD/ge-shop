@@ -1,19 +1,26 @@
 import { FaShoppingCart, FaUser, FaSearch } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export function Navbar() {
   return (
     <NavbarDiv>
-      <Logo className="w-40">
-        <h1>GESHOP</h1>
-        <p>SHOP</p>
-      </Logo>
+      <Link to="/">
+        <Logo className="w-40">
+          <h1>GESHOP</h1>
+          <p>SHOP</p>
+        </Logo>
+      </Link>
       <RightSide className="w-60 text-2xl">
         <TbWorld />
         <FaSearch />
-        <FaUser />
-        <FaShoppingCart />
+        <Link to="/Signup-Login">
+          <FaUser />
+        </Link>
+        <Link to="/Cart">
+          <FaShoppingCart />
+        </Link>
       </RightSide>
     </NavbarDiv>
   );

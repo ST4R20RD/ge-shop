@@ -3,9 +3,11 @@ import { Navbar } from "../components";
 
 export function Layout() {
   return (
-    <section>
+    <section className="">
       <Navbar />
-      <Outlet />
+      <section className="flex justify-center max-w-screen-xl m-auto">
+        <Outlet />
+      </section>
     </section>
   );
 }

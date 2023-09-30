@@ -1,7 +1,19 @@
+import { useEffect } from "react";
+import { useGetAllProducts } from "../../lib/api-hooks";
+import { ProductBox } from "./ProductBox";
+
 export function Home() {
+  const [allProducts, , getAllProducts] = useGetAllProducts();
+  useEffect(() => {
+    getAllProducts();
+    console.log(allProducts);
+  }, []);
+
   return (
-    <div className="flex justify-center content-center items-center bg-neutral-600 w-full h-screen">
-      Home
+    <div className="flex flex-wrap justify-center content-center items-center p-10">
+      {allProducts.map((product) => {
+        return <ProductBox key={product.id} product={product} />;
+      })}
     </div>
   );
 }

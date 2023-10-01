@@ -49,16 +49,16 @@ export function useGetAllCategories() {
 }
 
 export function useGetSingleCategory() {
-  const [category, setCategory] = useState<string>("");
+  const [categoryList, setCategory] = useState<Array<ProductData>>([]);
   const getCategory = async (category: string) => {
     try {
       const res = await client.get(`/product/category/${category}`);
-      const resData = res.data as string;
+      const resData = res.data as Array<ProductData>;
 
       setCategory(resData);
     } catch (error) {
       console.log(error);
     }
   };
-  return [category, getCategory] as const;
+  return [categoryList, getCategory] as const;
 }

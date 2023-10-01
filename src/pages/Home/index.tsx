@@ -3,10 +3,9 @@ import { useGetAllProducts } from "../../lib/api-hooks";
 import { ProductBox } from "./ProductBox";
 
 export function Home() {
-  const [allProducts, , getAllProducts] = useGetAllProducts();
+  const [allProducts, getAllProducts] = useGetAllProducts();
   useEffect(() => {
     getAllProducts();
-    console.log(allProducts);
   }, []);
 
   return (

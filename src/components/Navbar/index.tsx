@@ -1,19 +1,34 @@
+import { useEffect, useState } from "react";
 import { FaShoppingCart, FaUser, FaSearch } from "react-icons/fa";
+import { FiMenu } from "react-icons/fi";
 import { MdOutlineDiscount } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useGetAllCategories } from "../../lib/api-hooks";
 
 export function Navbar() {
+  const [tapOpen, setTabOpen] = useState<boolean>(false);
+  const [allCategories, getAllCategories] = useGetAllCategories();
+
+  useEffect(() => {
+    getAllCategories();
+  }, []);
+
   return (
-    <Container className="">
+    <Container>
       <NavbarDiv className="max-w-screen-xl m-auto">
-        <Link to="/">
-          <Logo>
-            <MdOutlineDiscount />
-            <h1>GE SHOP</h1>
-          </Logo>
-        </Link>
+        <div className="flex items-center">
+          <button onClick={() => setTabOpen(!tapOpen)}>
+            <FiMenu size={30} />
+          </button>
+          <Link to="/">
+            <Logo>
+              <MdOutlineDiscount />
+              <h1>GE SHOP</h1>
+            </Logo>
+          </Link>
+        </div>
         <RightSide className="w-60 text-2xl">
           <TbWorld />
           <FaSearch />
@@ -25,14 +40,32 @@ export function Navbar() {
           </Link>
         </RightSide>
       </NavbarDiv>
+      {tapOpen && (
+        <div className="flex flex-col bg-zinc-300 px-80 py-5">
+          <h3>Categories</h3>
+          {allCategories.map((category) => {
+            return (
+              <Link
+                to={`/category/${category.toString()}`}
+                onClick={() => setTabOpen(false)}
+                className="p-1 text-zinc-600 underline"
+              >
+                {category}
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </Container>
   );
 }
 
 const Container = styled.div`
   background-color: #3e424b;
-  position: sticky;
+  overflow: hidden;
+  position: fixed;
   top: 0;
+  width: 100%;
 `;
 
 const NavbarDiv = styled.div`

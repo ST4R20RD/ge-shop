@@ -52,7 +52,7 @@ export function useGetSingleCategory() {
   const [categoryList, setCategory] = useState<Array<ProductData>>([]);
   const getCategory = async (category: string) => {
     try {
-      const res = await client.get(`/product/category/${category}`);
+      const res = await client.get(`/products/category/${category}`);
       const resData = res.data as Array<ProductData>;
 
       setCategory(resData);

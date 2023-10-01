@@ -10,6 +10,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/category/:category" element={<Category />} />
           <Route path="/Signup-Login" element={<SignupLogin />} />
         </Route>
       </Routes>

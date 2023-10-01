@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import { ProductData } from "../../utils/types";
+import { useContext } from "react";
+import { ShopContext, ShopContextType } from "../../context/ShopContext";
 
 interface Props {
   product: ProductData;
 }
 
 export function ProductBox({ product }: Props) {
+  const { addToCart, cartItems } = useContext(ShopContext) as ShopContextType;
+
+  const cartItemCount = cartItems[product.id];
+
   return (
     <Container className="flex flex-col justify-around items-center border border-zinc-300 shadow-md rounded-xl w-60 h-80 p-5 m-2">
       <Img src={product.image} className="max-w-20 h-20" />
@@ -18,8 +24,11 @@ export function ProductBox({ product }: Props) {
         </Rating>
       </div>
       <Price className="text-2xl">$ {product.price}</Price>
-      <Button className="border border-zinc-300 rounded-full px-2 py-1 hover:bg-black hover:text-white">
-        Add to Cart
+      <Button
+        className="border border-zinc-300 rounded-full px-2 py-1 hover:bg-black hover:text-white"
+        onClick={() => addToCart(product.id)}
+      >
+        Add to Cart {cartItemCount > 0 && <> ({cartItemCount})</>}
       </Button>
     </Container>
   );

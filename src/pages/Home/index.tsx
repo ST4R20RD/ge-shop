@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useGetAllProducts } from "../../lib/api-hooks";
-import { ProductBox } from "./ProductBox";
+import { ProductBox } from "../../components";
 
 export function Home() {
   const [allProducts, getAllProducts] = useGetAllProducts();
   useEffect(() => {
     getAllProducts();
+    // eslint-disable-next-line
   }, []);
 
   return (

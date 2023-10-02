@@ -15,7 +15,7 @@ export function Home() {
     <>
       {productsFetchState === FetchState.LOADING && <ClipLoader color="#3E424B" />}
       {productsFetchState === FetchState.SUCCESS && (
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 max-w-screen-xl">
           <p className="text-red-500 text-5xl">50% DEALS</p>
           <div className="flex flex-wrap justify-center content-center items-center p-10">
             {allProducts.map((product) => {

@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { ProductData } from "../../utils/types";
 import { useContext } from "react";
 import { ShopContext, ShopContextType } from "../../context/ShopContext";
-import { RatingStars } from "./RatingStars";
+import { RatingStars } from "../RatingStars";
 import { BsCartPlus, BsCartCheckFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: ProductData;
@@ -17,25 +18,29 @@ export function ProductBox({ product }: Props) {
   const discount = 50;
 
   return (
-    <Wrapper className="shadow-sm rounded-xl w-60 h-80 m-2">
+    <div className="bg-white shadow-sm rounded-xl w-60 h-80 m-2">
       <p className="text-white bg-red-500 w-fit rounded-tl-xl rounded-br-xl px-2">-{discount}%</p>
-      <Container className="p-2">
-        <Price className="flex items-end text-red-600 text-lg mb-2">
-          <p className="text-3xl">${priceInteger}</p>
-          {product.price - priceInteger > 0 && "," + priceDecimal}
-          <del className="text-zinc-500 ml-2">
-            {(product.price * (1 + discount / 100)).toFixed(2)}
-          </del>
-        </Price>
-        <div className="h-36">
-          <Img src={product.image} className="max-h-36" />
-        </div>
-        <Title className="text-zinc-500 text-sm text-center">
-          {product.title.length >= 49 ? product.title.slice(0, 49) + "..." : product.title}
-        </Title>
-        <Rating className="text-xs">
-          <RatingStars productRating={product.rating} />
-        </Rating>
+      <Wrapper>
+        <Link to={`/product/${product.id}`}>
+          <Container className="p-2">
+            <Price className="flex items-end text-red-600 text-lg mb-2">
+              <p className="text-3xl">${priceInteger}</p>
+              {product.price - priceInteger > 0 && "," + priceDecimal}
+              <del className="text-zinc-500 ml-2">
+                ${(product.price * (1 + discount / 100)).toFixed(2)}
+              </del>
+            </Price>
+            <div className="h-36">
+              <Img src={product.image} className="max-h-36" />
+            </div>
+            <Title className="text-zinc-500 text-sm text-center h-10">
+              {product.title.length >= 49 ? product.title.slice(0, 49) + "..." : product.title}
+            </Title>
+            <Rating className="text-xs">
+              <RatingStars productRating={product.rating} />
+            </Rating>
+          </Container>
+        </Link>
         <Button
           className="p-1 rounded-full"
           onClick={() => {
@@ -44,12 +49,15 @@ export function ProductBox({ product }: Props) {
         >
           {cartItemCount > 0 ? <BsCartCheckFill size={20} /> : <BsCartPlus size={20} />}
         </Button>
-      </Container>
-    </Wrapper>
+      </Wrapper>
+    </div>
   );
 }
 const Wrapper = styled.div`
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 const Container = styled.div`
   display: flex;

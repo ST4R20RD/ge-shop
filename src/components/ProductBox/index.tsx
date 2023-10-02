@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ProductData } from "../../utils/types";
 import { useContext } from "react";
 import { ShopContext, ShopContextType } from "../../context/ShopContext";
+import { RatingStars } from "./RatingStars";
 
 interface Props {
   product: ProductData;
@@ -20,7 +21,7 @@ export function ProductBox({ product }: Props) {
       </Title>
       <div className="flex justify-around w-full">
         <Rating className="text-xs">
-          Rating: {product.rating.rate} ({product.rating.count})
+          <RatingStars productRating={product.rating} />
         </Rating>
       </div>
       <Price className="text-2xl">$ {product.price}</Price>
@@ -37,5 +38,5 @@ const Container = styled.div``;
 const Img = styled.img``;
 const Title = styled.p``;
 const Price = styled.p``;
-const Rating = styled.p``;
+const Rating = styled.div``;
 const Button = styled.button``;

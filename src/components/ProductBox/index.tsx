@@ -24,7 +24,7 @@ export function ProductBox({ product }: Props) {
           <RatingStars productRating={product.rating} />
         </Rating>
       </div>
-      <Price className="text-2xl">$ {product.price}</Price>
+      <Price className="text-2xl">$ {product.price.toFixed(2)}</Price>
       <Button
         className="border border-zinc-300 rounded-full px-2 py-1 hover:bg-black hover:text-white"
         onClick={() => addToCart(product.id)}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { FaShoppingCart, FaUser, FaSearch } from "react-icons/fa";
+import { FaUser, FaSearch } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineDiscount } from "react-icons/md";
+import { BsCartFill } from "react-icons/bs";
 import { TbWorld } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -36,7 +37,7 @@ export function Navbar() {
             <FaUser />
           </Link>
           <Link to="/Cart">
-            <FaShoppingCart />
+            <BsCartFill />
           </Link>
         </RightSide>
       </NavbarDiv>

@@ -1,36 +1,44 @@
 import { useState } from "react";
-import { ProductData } from "../utils/types";
+import { FetchState, ProductData } from "../utils/types";
 import { client } from "../client";
 
 export function useGetAllProducts() {
+  const [productsFetchState, setProductsFetchState] = useState(FetchState.DEFAULT);
   const [allProducts, setAllProducts] = useState<Array<ProductData>>([]);
   const getAllProducts = async () => {
     try {
+      setProductsFetchState(FetchState.LOADING);
       const res = await client.get("/products");
       const resData = res.data as Array<ProductData>;
 
       setAllProducts(resData);
+      setProductsFetchState(FetchState.SUCCESS);
     } catch (error) {
       console.log(error);
+      setProductsFetchState(FetchState.ERROR);
     }
   };
 
-  return [allProducts, getAllProducts] as const;
+  return [allProducts, getAllProducts, productsFetchState] as const;
 }
 
 export function useGetSingleProduct() {
+  const [productFetchState, setProductFetchState] = useState(FetchState.DEFAULT);
   const [product, setProduct] = useState<ProductData>();
   const getProduct = async (id: number) => {
     try {
-      const res = await client.get(`/product/${id}`);
+      setProductFetchState(FetchState.LOADING);
+      const res = await client.get(`/products/${id}`);
       const resData = res.data as ProductData;
 
       setProduct(resData);
+      setProductFetchState(FetchState.SUCCESS);
     } catch (error) {
       console.log(error);
+      setProductFetchState(FetchState.ERROR);
     }
   };
-  return [product, getProduct] as const;
+  return [product, getProduct, productFetchState] as const;
 }
 
 export function useGetAllCategories() {

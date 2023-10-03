@@ -11,7 +11,7 @@ interface Cart {
 
 export type ShopContextType = {
   cartItems: Cart;
-  getTotalCartAmount: () => number | undefined;
+  getTotalCartAmount: () => number;
   addToCart: (itemId: number) => void;
   removeFromCart: (itemId: number) => void;
   updateCartItemCount: (newAmount: number, itemId: number) => void;
@@ -38,8 +38,12 @@ export function ShopContextProvider({ children }: ShopContextProviderChildren) {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
+        const productId = Number(item);
         let itemInfo = allProducts.find((product) => product.id === Number(item));
-        if (!itemInfo) return;
+        if (!itemInfo) {
+          console.error(`Product id: ${productId} not found.`);
+          continue;
+        }
         totalAmount += cartItems[item] * itemInfo.price;
       }
     }

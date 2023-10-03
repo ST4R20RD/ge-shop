@@ -11,7 +11,7 @@ import styled from "styled-components";
 export function Cart() {
   const [allProducts, getAllProducts, productsFetchState] = useGetAllProducts();
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext) as ShopContextType;
-  const totalAmount = getTotalCartAmount() || 0;
+  const totalAmount = getTotalCartAmount();
 
   const navigate = useNavigate();
 

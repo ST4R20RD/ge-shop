@@ -5,7 +5,7 @@ import { MdOutlineDiscount } from "react-icons/md";
 import { BsCartFill } from "react-icons/bs";
 import { TbWorld } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled, { StyleSheetManager, keyframes } from "styled-components";
 import { useGetAllCategories } from "../../lib/api-hooks";
 
 export function Navbar() {
@@ -52,23 +52,25 @@ export function Navbar() {
           </Link>
         </RightSide>
       </NavbarDiv>
-      {tabOpen && (
-        <Tab tabOpen={tabOpen} className="flex flex-col bg-zinc-300 px-80 py-3">
-          <h3>Categories</h3>
-          {allCategories.map((category, index) => {
-            return (
-              <Link
-                to={`/category/${category.toString()}`}
-                onClick={() => setTabOpen(false)}
-                className="p-1 text-zinc-600 underline"
-                key={index}
-              >
-                {category}
-              </Link>
-            );
-          })}
-        </Tab>
-      )}
+      <StyleSheetManager shouldForwardProp={(prop) => prop !== "tabOpen"}>
+        {tabOpen && (
+          <Tab tabOpen={tabOpen} className="flex flex-col bg-zinc-300 px-80 py-3">
+            <h3>Categories</h3>
+            {allCategories.map((category, index) => {
+              return (
+                <Link
+                  to={`/category/${category.toString()}`}
+                  onClick={() => setTabOpen(false)}
+                  className="p-1 text-zinc-600 underline"
+                  key={index}
+                >
+                  {category}
+                </Link>
+              );
+            })}
+          </Tab>
+        )}
+      </StyleSheetManager>
     </Container>
   );
 }

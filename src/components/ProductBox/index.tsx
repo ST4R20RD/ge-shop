@@ -68,7 +68,7 @@ const Container = styled.div`
 `;
 const Img = styled.img``;
 const Title = styled.p``;
-const Price = styled.p``;
+const Price = styled.div``;
 const Rating = styled.div`
   display: flex;
   justify-content: space-around;

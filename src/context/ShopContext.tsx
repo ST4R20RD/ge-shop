@@ -30,10 +30,6 @@ export function ShopContextProvider({ children }: ShopContextProviderChildren) {
 
   const [cartItems, setCartItems] = useState<Cart>({});
 
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
-
   const getTotalCartAmount = () => {
     let totalAmount = 0;
     for (const item in cartItems) {

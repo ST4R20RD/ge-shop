@@ -31,7 +31,7 @@ export function Cart() {
                 {allProducts
                   .filter((product) => cartItems[product.id] > 0)
                   .map((product) => {
-                    return <InCartProductBox product={product} />;
+                    return <InCartProductBox key={product.id} product={product} />;
                   })}
               </>
             )

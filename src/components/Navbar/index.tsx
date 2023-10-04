@@ -14,6 +14,7 @@ export function Navbar() {
 
   useEffect(() => {
     getAllCategories();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -44,12 +45,13 @@ export function Navbar() {
       {tapOpen && (
         <div className="flex flex-col bg-zinc-300 px-80 py-5">
           <h3>Categories</h3>
-          {allCategories.map((category) => {
+          {allCategories.map((category, index) => {
             return (
               <Link
                 to={`/category/${category.toString()}`}
                 onClick={() => setTabOpen(false)}
                 className="p-1 text-zinc-600 underline"
+                key={index}
               >
                 {category}
               </Link>

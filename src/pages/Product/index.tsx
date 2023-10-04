@@ -37,7 +37,7 @@ export function Product() {
       {productFetchState === FetchState.SUCCESS && product && (
         <div className="flex flex-col">
           <div className="flex mt-10">
-            <ImgContainer className="flex justify-center items-center min-w-[500px] h-[500px]">
+            <ImgContainer className="flex justify-center items-center min-w-[500px] h-[500px] bg-white rounded-lg">
               <Img src={product.image} className="p-5 max-w-[500px]" />
             </ImgContainer>
             <section className="max-w-2xl p-5">
@@ -52,7 +52,7 @@ export function Product() {
               <div>
                 <Price className="flex items-end text-lg mb-2">
                   <div className="flex items-end text-red-600">
-                    <p className="text-3xl 0">${priceInteger}</p>
+                    <p className="text-3xl">${priceInteger}</p>
                     <p>{product.price - priceInteger > 0 && "," + priceDecimal}</p>
                   </div>
                   <del className="text-zinc-500 ml-2">
@@ -63,19 +63,21 @@ export function Product() {
                 <p className="text-zinc-400">Prices include Taxes</p>
               </div>
             </section>
-            <section className="w-60">
-              <SideSection>
-                Envio para: <CountrySelector />
-              </SideSection>
-              <SideSection>
-                <p>Delivery</p>
-                <p className="text-green-600 font-semibold">Delivery in 10 days</p>
-                <p>on {arrivalDate}</p>
-              </SideSection>
-              <SideSection>
-                <p>Services</p>
-                <p className="text-green-600 font-semibold">Free Return</p>
-              </SideSection>
+            <section className="flex flex-col justify-between w-64 bg-white p-5 rounded-lg">
+              <div>
+                <SideSection>
+                  Envio para: <CountrySelector />
+                </SideSection>
+                <SideSection>
+                  <p>Delivery</p>
+                  <p className="text-green-600 font-semibold">Delivery in 10 days</p>
+                  <p>on {arrivalDate}</p>
+                </SideSection>
+                <SideSection>
+                  <p>Services</p>
+                  <p className="text-green-600 font-semibold">Free Return</p>
+                </SideSection>
+              </div>
               <div className="flex flex-col items-center mt-2">
                 <button className="w-full text-white text-xl bg-red-600 rounded-full m-2 px-3 py-2">
                   Buy now

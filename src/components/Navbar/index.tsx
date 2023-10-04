@@ -5,11 +5,11 @@ import { MdOutlineDiscount } from "react-icons/md";
 import { BsCartFill } from "react-icons/bs";
 import { TbWorld } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useGetAllCategories } from "../../lib/api-hooks";
 
 export function Navbar() {
-  const [tapOpen, setTabOpen] = useState<boolean>(false);
+  const [tabOpen, setTabOpen] = useState<boolean>(false);
   const [allCategories, getAllCategories] = useGetAllCategories();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function Navbar() {
     <Container className="bg-slate-800">
       <NavbarDiv className="max-w-screen-xl m-auto text-stone-400">
         <div className="flex items-center">
-          <button onClick={() => setTabOpen(!tapOpen)}>
+          <button onClick={() => setTabOpen(!tabOpen)}>
             <FiMenu size={30} />
           </button>
           <Link to="/">
@@ -52,8 +52,8 @@ export function Navbar() {
           </Link>
         </RightSide>
       </NavbarDiv>
-      {tapOpen && (
-        <div className="flex flex-col bg-zinc-300 px-80 py-5">
+      {tabOpen && (
+        <Tab tabOpen={tabOpen} className="flex flex-col bg-zinc-300 px-80 py-3">
           <h3>Categories</h3>
           {allCategories.map((category, index) => {
             return (
@@ -67,7 +67,7 @@ export function Navbar() {
               </Link>
             );
           })}
-        </div>
+        </Tab>
       )}
     </Container>
   );
@@ -101,4 +101,58 @@ const Logo = styled.div`
 const RightSide = styled.div`
   display: flex;
   justify-content: space-evenly;
+`;
+
+const fadeIn = keyframes`
+  0% {
+    height: 0px;
+  }
+  10% {
+    height: 17px;
+  }
+  20% {
+    height: 34px;
+  }
+  30% {
+    height: 51px;
+  }
+  40% {
+    height: 68px;
+  }
+  50% {
+    height: 86px;
+  }
+  60% {
+    height: 103px;
+  }
+  70% {
+    height: 120px;
+  }
+  80% {
+    height: 137px;
+  }
+  90% {
+    height: 154px;
+  }
+  100% {
+    height: 172px;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+`;
+
+interface TabProps {
+  tabOpen: boolean;
+}
+
+const Tab = styled.div<TabProps>`
+  opacity: ${(props) => (props.tabOpen ? "1" : "0")};
+  animation: ${(props) => (props.tabOpen ? fadeIn : fadeOut)} 0.3s ease-in-out;
 `;

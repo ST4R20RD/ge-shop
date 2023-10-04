@@ -73,7 +73,9 @@ export function InCartProductBox({ product }: Props) {
               type="number"
               value={cartItemCount}
               onChange={itemCountChange}
-              className="w-10 h-6 text-center border border-zinc-600"
+              className="w-10 h-6 text-center border border-zinc-600 rounded-lg appearance-none m-0"
+              inputMode="numeric"
+              pattern="[0-9]*"
             />
             <Button
               className="p-1 rounded-full"

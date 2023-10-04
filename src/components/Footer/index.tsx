@@ -17,7 +17,7 @@ export function Footer() {
     "Polish",
   ];
   return (
-    <div className="flex justify-around items-center bg-slate-800 text p-5 text-stone-400">
+    <div className="flex justify-around items-center bg-[#46B29D] dark:bg-slate-800 text p-5 text-slate-800 dark:text-stone-400">
       <div>
         <p className="text-xl font-semibold">Languages</p>
         <ul>

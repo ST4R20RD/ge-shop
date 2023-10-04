@@ -24,7 +24,7 @@ export function Cart() {
 
   return (
     <div className="flex flex-col items-center max-w-screen-xl h-[calc(100vh-64px)]">
-      <h1>Cart</h1>
+      <h1 className="text-white">Cart</h1>
       <section className="flex justify-center">
         <ProductList className="flex flex-col items-end overflow-y-auto w-[42vw]">
           {productsFetchState === FetchState.LOADING && (

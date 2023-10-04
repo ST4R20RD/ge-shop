@@ -52,14 +52,16 @@ export function Product() {
               <Img src={product.image} className="p-5 max-w-[500px]" />
             </ImgContainer>
             <section className="max-w-2xl p-5">
-              <Title>{product.title}</Title>
-              <Link to={`/category/${product.category}`}>
-                <Category className="my-3">{product.category}</Category>
-              </Link>
-              <Description className="my-4">{product.description}</Description>
-              <Rating className="m-3 ml-0">
-                <RatingStars productRating={product.rating} big={true} />
-              </Rating>
+              <div className="dark:text-white">
+                <Title>{product.title}</Title>
+                <Link to={`/category/${product.category}`}>
+                  <Category className="my-3">{product.category}</Category>
+                </Link>
+                <Description className="my-4">{product.description}</Description>
+                <Rating className="m-3 ml-0">
+                  <RatingStars productRating={product.rating} big={true} />
+                </Rating>
+              </div>
               <div>
                 <Price className="flex items-end text-lg mb-2">
                   <div className="flex items-end text-red-600">
@@ -102,7 +104,7 @@ export function Product() {
               </div>
             </section>
           </div>
-          <h1>Similar Products</h1>
+          <h1 className="dark:text-white mt-2">Similar Products</h1>
           <div className="flex flex-col items-center">
             {categoryFetchState === FetchState.LOADING && <ClipLoader color="#3E424B" />}
             {categoryFetchState === FetchState.SUCCESS && (

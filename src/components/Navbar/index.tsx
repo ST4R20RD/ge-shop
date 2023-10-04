@@ -18,8 +18,8 @@ export function Navbar() {
   }, []);
 
   return (
-    <Container className="bg-slate-800">
-      <NavbarDiv className="max-w-screen-xl m-auto text-stone-400">
+    <Container className="bg-[#46B29D] dark:bg-slate-800">
+      <NavbarDiv className="max-w-screen-xl m-auto text-slate-800 dark:text-stone-400">
         <div className="flex items-center">
           <button onClick={() => setTabOpen(!tabOpen)}>
             <FiMenu size={30} />

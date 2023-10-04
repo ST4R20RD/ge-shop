@@ -22,7 +22,7 @@ export function ProductBox({ product }: Props) {
       <p className="text-white bg-red-500 w-fit rounded-tl-xl rounded-br-xl px-2">-{discount}%</p>
       <Wrapper>
         <Link to={`/product/${product.id}`}>
-          <Container className="p-2">
+          <Container className="p-2 w-60">
             <Price className="flex items-end text-red-600 text-lg mb-2">
               <p className="text-3xl">${priceInteger}</p>
               {product.price - priceInteger > 0 && "," + priceDecimal}
@@ -30,7 +30,7 @@ export function ProductBox({ product }: Props) {
                 ${(product.price * (1 + discount / 100)).toFixed(2)}
               </del>
             </Price>
-            <div className="h-36">
+            <div className="flex items-center justify-center h-36 bg-white p-5 w-full rounded-lg">
               <Img src={product.image} className="max-h-36" />
             </div>
             <Title className="text-zinc-500 text-sm text-center h-10">

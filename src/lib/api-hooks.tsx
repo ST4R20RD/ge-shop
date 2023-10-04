@@ -57,16 +57,20 @@ export function useGetAllCategories() {
 }
 
 export function useGetSingleCategory() {
+  const [categoryFetchState, setCategoryFetchState] = useState(FetchState.DEFAULT);
   const [categoryList, setCategory] = useState<Array<ProductData>>([]);
   const getCategory = async (category: string) => {
     try {
+      setCategoryFetchState(FetchState.LOADING);
       const res = await client.get(`/products/category/${category}`);
       const resData = res.data as Array<ProductData>;
 
       setCategory(resData);
+      setCategoryFetchState(FetchState.SUCCESS);
     } catch (error) {
       console.log(error);
+      setCategoryFetchState(FetchState.ERROR);
     }
   };
-  return [categoryList, getCategory] as const;
+  return [categoryList, getCategory, categoryFetchState] as const;
 }

@@ -3,6 +3,7 @@ import { useGetAllProducts } from "../../lib/api-hooks";
 import { ProductBox } from "../../components";
 import { FetchState } from "../../utils/types";
 import { ClipLoader } from "react-spinners";
+import Modal from "../../components/Modal";
 
 export function Home() {
   const [allProducts, getAllProducts, productsFetchState] = useGetAllProducts();
@@ -13,7 +14,11 @@ export function Home() {
 
   return (
     <>
-      {productsFetchState === FetchState.LOADING && <ClipLoader color="#3E424B" />}
+      {productsFetchState === FetchState.LOADING && (
+        <Modal>
+          <ClipLoader color="#FFF" />
+        </Modal>
+      )}
       {productsFetchState === FetchState.SUCCESS && (
         <div className="text-center mt-5 max-w-screen-xl">
           <p className="text-red-500 text-5xl">50% DEALS</p>
@@ -25,7 +30,13 @@ export function Home() {
         </div>
       )}
       {productsFetchState === FetchState.ERROR && (
-        <div>Could not Load the page. Please Refresh.</div>
+        <div className="flex items-center">
+          Could not Load the page. Please&nbsp;
+          <button className="text-blue-400 underline" onClick={() => window.location.reload()}>
+            Reload
+          </button>
+          !
+        </div>
       )}
     </>
   );

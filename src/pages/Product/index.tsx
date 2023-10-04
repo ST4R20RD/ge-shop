@@ -7,11 +7,12 @@ import { ClipLoader } from "react-spinners";
 import { CountrySelector } from "./CountrySelector";
 import { ProductBox, RatingStars } from "../../components";
 import { ShopContext, ShopContextType } from "../../context/ShopContext";
+import Modal from "../../components/Modal";
 
 export function Product() {
   const { productId } = useParams();
   const [product, getProduct, productFetchState] = useGetSingleProduct();
-  const [categoryList, getCategory] = useGetSingleCategory();
+  const [categoryList, getCategory, categoryFetchState] = useGetSingleCategory();
   const { addToCart, cartItems } = useContext(ShopContext) as ShopContextType;
   const priceInteger = product ? Math.trunc(product.price) : 0;
   const priceDecimal = product && ((product.price - priceInteger) * 100).toFixed();
@@ -39,7 +40,11 @@ export function Product() {
 
   return (
     <>
-      {productFetchState === FetchState.LOADING && <ClipLoader color="#3E424B" />}
+      {productFetchState === FetchState.LOADING && (
+        <Modal>
+          <ClipLoader color="#FFF" />
+        </Modal>
+      )}
       {productFetchState === FetchState.SUCCESS && product && (
         <div className="flex flex-col">
           <div className="flex mt-10">
@@ -99,13 +104,19 @@ export function Product() {
           </div>
           <h1>Similar Products</h1>
           <div className="flex flex-col items-center">
-            <div className="flex flex-wrap justify-center content-center items-center p-10">
-              {categoryList
-                .filter((categoryProduct: ProductData) => categoryProduct.id !== Number(product.id))
-                .map((product: ProductData) => {
-                  return <ProductBox key={product.id} product={product} />;
-                })}
-            </div>
+            {categoryFetchState === FetchState.LOADING && <ClipLoader color="#3E424B" />}
+            {categoryFetchState === FetchState.SUCCESS && (
+              <div className="flex flex-wrap justify-center content-center items-center p-10">
+                {categoryList
+                  .filter(
+                    (categoryProduct: ProductData) => categoryProduct.id !== Number(product.id)
+                  )
+                  .map((product: ProductData) => {
+                    return <ProductBox key={product.id} product={product} />;
+                  })}
+              </div>
+            )}
+            {categoryFetchState === FetchState.ERROR && <p>Could not load.</p>}
           </div>
         </div>
       )}

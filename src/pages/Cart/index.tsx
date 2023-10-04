@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { FaApplePay, FaCcMastercard, FaGooglePay, FaPaypal, FaShieldAlt } from "react-icons/fa";
 import { LiaCcVisa } from "react-icons/lia";
 import styled from "styled-components";
+import { ClipLoader } from "react-spinners";
+import Modal from "../../components/Modal";
 
 export function Cart() {
   const [allProducts, getAllProducts, productsFetchState] = useGetAllProducts();
@@ -25,8 +27,13 @@ export function Cart() {
       <h1>Cart</h1>
       <section className="flex justify-center">
         <ProductList className="flex flex-col items-end overflow-y-auto w-[42vw]">
-          {totalAmount && totalAmount > 0 ? (
-            productsFetchState === FetchState.SUCCESS && (
+          {productsFetchState === FetchState.LOADING && (
+            <Modal>
+              <ClipLoader color="#FFF" />
+            </Modal>
+          )}
+          {productsFetchState === FetchState.SUCCESS &&
+            (totalAmount && totalAmount > 0 ? (
               <>
                 {allProducts
                   .filter((product) => cartItems[product.id] > 0)
@@ -34,10 +41,9 @@ export function Cart() {
                     return <InCartProductBox key={product.id} product={product} />;
                   })}
               </>
-            )
-          ) : (
-            <h1 className="mr-5"> Your Shopping Cart is Empty</h1>
-          )}
+            ) : (
+              <h1 className="mr-5"> Your Shopping Cart is Empty</h1>
+            ))}
         </ProductList>
         <div className="mt-2">
           <div className="text-xl font-semibold rounded-lg bg-white p-5 w-80 mb-4">

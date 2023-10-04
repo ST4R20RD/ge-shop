@@ -124,7 +124,7 @@ const Price = styled.div``;
 const Category = styled.h2`
   text-decoration: underline;
 `;
-const Rating = styled.p``;
+const Rating = styled.div``;
 const SideSection = styled.section`
   border-bottom-width: 1px;
   border-color: rgb(212 212 216);

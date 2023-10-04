@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaUser, FaSearch } from "react-icons/fa";
+import { FaUser, FaSearch, FaReact } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineDiscount } from "react-icons/md";
 import { BsCartFill } from "react-icons/bs";
@@ -18,8 +18,8 @@ export function Navbar() {
   }, []);
 
   return (
-    <Container>
-      <NavbarDiv className="max-w-screen-xl m-auto">
+    <Container className="bg-slate-800">
+      <NavbarDiv className="max-w-screen-xl m-auto text-stone-400">
         <div className="flex items-center">
           <button onClick={() => setTabOpen(!tapOpen)}>
             <FiMenu size={30} />
@@ -30,6 +30,16 @@ export function Navbar() {
               <h1>GE SHOP</h1>
             </Logo>
           </Link>
+          <a
+            href="https://goncalo-estrelado.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="flex items-center underline">
+              <FaReact />
+              <p className="pl-2">Developed by Gonçalo Estrelado</p>
+            </span>
+          </a>
         </div>
         <RightSide className="w-60 text-2xl">
           <TbWorld />
@@ -64,7 +74,6 @@ export function Navbar() {
 }
 
 const Container = styled.div`
-  background-color: #3e424b;
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -76,7 +85,6 @@ const NavbarDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 4rem;
-  color: #928e85;
 `;
 
 const Logo = styled.div`

@@ -13,9 +13,9 @@ export function RatingStars({ productRating, big }: Props) {
       <div className="flex text-yellow-500 mx-1">
         {Array(integer)
           .fill(true)
-          .map((i, index) => {
-            return <BsStarFill key={index} size={big ? 20 : 12} />;
-          })}
+          .map((i, index) => (
+            <BsStarFill key={index} size={big ? 20 : 12} />
+          ))}
         {decimal >= 0.5 && <BsStarHalf size={big ? 20 : 12} />}
         {Array(Math.round(5 - productRating.rate))
           .fill(true)

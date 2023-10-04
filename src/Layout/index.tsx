@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../components";
+import { Footer, Navbar } from "../components";
 
 export function Layout() {
   return (
@@ -8,6 +8,7 @@ export function Layout() {
       <section className="flex justify-center m-auto mt-16 bg-stone-300">
         <Outlet />
       </section>
+      <Footer />
     </section>
   );
 }

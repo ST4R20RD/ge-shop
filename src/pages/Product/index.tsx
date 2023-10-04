@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useGetSingleCategory, useGetSingleProduct } from "../../lib/api-hooks";
@@ -6,15 +6,21 @@ import { FetchState, ProductData } from "../../utils/types";
 import { ClipLoader } from "react-spinners";
 import { CountrySelector } from "./CountrySelector";
 import { ProductBox, RatingStars } from "../../components";
+import { ShopContext, ShopContextType } from "../../context/ShopContext";
 
 export function Product() {
   const { productId } = useParams();
   const [product, getProduct, productFetchState] = useGetSingleProduct();
   const [categoryList, getCategory] = useGetSingleCategory();
-
+  const { addToCart, cartItems } = useContext(ShopContext) as ShopContextType;
   const priceInteger = product ? Math.trunc(product.price) : 0;
   const priceDecimal = product && ((product.price - priceInteger) * 100).toFixed();
   const discount = 50;
+
+  const cartItemCount = () => {
+    if (product) return cartItems[product.id];
+    return 0;
+  };
 
   let options: Intl.DateTimeFormatOptions = { month: "long", day: "2-digit" };
   let newDate = new Date();
@@ -82,8 +88,11 @@ export function Product() {
                 <button className="w-full text-white text-xl bg-red-600 rounded-full m-2 px-3 py-2">
                   Buy now
                 </button>
-                <button className="w-full text-red-600 text-xl bg-red-200 rounded-full m-2 px-3 py-2">
-                  Add to cart
+                <button
+                  onClick={() => !cartItemCount() && addToCart(product.id)}
+                  className="w-full text-red-600 text-xl bg-red-200 rounded-full m-2 px-3 py-2"
+                >
+                  {cartItemCount() > 0 ? "Added!" : "Add to cart"}
                 </button>
               </div>
             </section>

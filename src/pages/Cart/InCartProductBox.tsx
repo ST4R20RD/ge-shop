@@ -10,7 +10,9 @@ interface Props {
 }
 
 export function InCartProductBox({ product }: Props) {
-  const { addToCart, removeFromCart, cartItems } = useContext(ShopContext) as ShopContextType;
+  const { addToCart, removeFromCart, updateCartItemCount, cartItems } = useContext(
+    ShopContext
+  ) as ShopContextType;
   const priceInteger = Math.trunc(product.price);
   const priceDecimal = ((product.price - priceInteger) * 100).toFixed();
 
@@ -18,7 +20,13 @@ export function InCartProductBox({ product }: Props) {
 
   const cartItemCount = cartItems[product.id];
 
-  const cartItemCountRef = useRef<any>();
+  const cartItemCountRef = useRef<number>();
+
+  const itemCountChange = (event: { target: { value: string } }) => {
+    const newValue = parseInt(event.target.value);
+    updateCartItemCount(newValue, product.id);
+  };
+
   useEffect(() => {
     const cartItemCountValue = cartItems[product.id];
     cartItemCountRef.current = cartItemCountValue;
@@ -62,8 +70,9 @@ export function InCartProductBox({ product }: Props) {
               <FaMinus />
             </Button>
             <input
-              defaultValue={1}
+              type="number"
               value={cartItemCount}
+              onChange={itemCountChange}
               className="w-10 h-6 text-center border border-zinc-600"
             />
             <Button
@@ -91,11 +100,10 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* height: calc(100% - 24px); */
 `;
 const Img = styled.img``;
 const Title = styled.p``;
-const Price = styled.p``;
+const Price = styled.div``;
 const Button = styled.button`
   color: red;
   &:hover {

@@ -47,64 +47,66 @@ export function Product() {
       )}
       {productFetchState === FetchState.SUCCESS && product && (
         <div className="flex flex-col">
-          <div className="flex mt-10">
+          <div className="flex flex-col lg:flex-row mt-10">
             <ImgContainer className="flex justify-center items-center min-w-[500px] h-[500px] bg-white rounded-lg">
               <Img src={product.image} className="p-5 max-w-[500px]" />
             </ImgContainer>
-            <section className="max-w-2xl p-5">
-              <div className="dark:text-white">
-                <Title>{product.title}</Title>
-                <Link to={`/category/${product.category}`}>
-                  <Category className="my-3">{product.category}</Category>
-                </Link>
-                <Description className="my-4">{product.description}</Description>
-                <Rating className="m-3 ml-0">
-                  <RatingStars productRating={product.rating} big={true} />
-                </Rating>
-              </div>
-              <div>
-                <Price className="flex items-end text-lg mb-2">
-                  <div className="flex items-end text-red-600">
-                    <p className="text-3xl">${priceInteger}</p>
-                    <p>{product.price - priceInteger > 0 && "," + priceDecimal}</p>
-                  </div>
-                  <del className="text-zinc-500 ml-2">
-                    ${(product.price * (1 + discount / 100)).toFixed(2)}
-                  </del>
-                  <p className="text-base ml-1 text-zinc-500"> {discount}% off</p>
-                </Price>
-                <p className="text-zinc-400">Prices include Taxes</p>
-              </div>
-            </section>
-            <section className="flex flex-col justify-between w-64 bg-white p-5 rounded-lg">
-              <div>
-                <SideSection>
-                  Envio para: <CountrySelector />
-                </SideSection>
-                <SideSection>
-                  <p>Delivery</p>
-                  <p className="text-green-600 font-semibold">Delivery in 10 days</p>
-                  <p>on {arrivalDate}</p>
-                </SideSection>
-                <SideSection>
-                  <p>Services</p>
-                  <p className="text-green-600 font-semibold">Free Return</p>
-                </SideSection>
-              </div>
-              <div className="flex flex-col items-center mt-2">
-                <button className="w-full text-white text-xl bg-red-600 rounded-full m-2 px-3 py-2">
-                  Buy now
-                </button>
-                <button
-                  onClick={() => !cartItemCount() && addToCart(product.id)}
-                  className="w-full text-red-600 text-xl bg-red-200 rounded-full m-2 px-3 py-2"
-                >
-                  {cartItemCount() > 0 ? "Added!" : "Add to cart"}
-                </button>
-              </div>
+            <section className="flex flex-col items-center sm:flex-row">
+              <section className="max-w-2xl p-5">
+                <div className="dark:text-white">
+                  <Title>{product.title}</Title>
+                  <Link to={`/category/${product.category}`}>
+                    <Category className="my-3">{product.category}</Category>
+                  </Link>
+                  <Description className="my-4">{product.description}</Description>
+                  <Rating className="m-3 ml-0">
+                    <RatingStars productRating={product.rating} big={true} />
+                  </Rating>
+                </div>
+                <div>
+                  <Price className="flex items-end text-lg mb-2">
+                    <div className="flex items-end text-red-600">
+                      <p className="text-3xl">${priceInteger}</p>
+                      <p>{product.price - priceInteger > 0 && "," + priceDecimal}</p>
+                    </div>
+                    <del className="text-zinc-500 ml-2">
+                      ${(product.price * (1 + discount / 100)).toFixed(2)}
+                    </del>
+                    <p className="text-base ml-1 text-zinc-500"> {discount}% off</p>
+                  </Price>
+                  <p className="text-zinc-400">Prices include Taxes</p>
+                </div>
+              </section>
+              <section className="flex flex-col justify-between w-64 bg-white p-5 m-2 rounded-lg min-w-[256px] max-h-[405px]">
+                <div>
+                  <SideSection>
+                    Envio para: <CountrySelector />
+                  </SideSection>
+                  <SideSection>
+                    <p>Delivery</p>
+                    <p className="text-green-600 font-semibold">Delivery in 10 days</p>
+                    <p>on {arrivalDate}</p>
+                  </SideSection>
+                  <SideSection>
+                    <p>Services</p>
+                    <p className="text-green-600 font-semibold">Free Return</p>
+                  </SideSection>
+                </div>
+                <div className="flex flex-col items-center mt-2">
+                  <button className="w-full text-white text-xl bg-red-600 rounded-full m-2 px-3 py-2">
+                    Buy now
+                  </button>
+                  <button
+                    onClick={() => !cartItemCount() && addToCart(product.id)}
+                    className="w-full text-red-600 text-xl bg-red-200 rounded-full m-2 px-3 py-2"
+                  >
+                    {cartItemCount() > 0 ? "Added!" : "Add to cart"}
+                  </button>
+                </div>
+              </section>
             </section>
           </div>
-          <h1 className="dark:text-white mt-2">Similar Products</h1>
+          <h1 className="dark:text-white m-2">Similar Products</h1>
           <div className="flex flex-col items-center">
             {categoryFetchState === FetchState.LOADING && <ClipLoader color="#3E424B" />}
             {categoryFetchState === FetchState.SUCCESS && (

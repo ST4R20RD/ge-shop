@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { FaUser, FaSearch, FaReact } from "react-icons/fa";
+import { useState } from "react";
+import { FaUser, FaSearch } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineDiscount } from "react-icons/md";
 import { BsCartFill } from "react-icons/bs";

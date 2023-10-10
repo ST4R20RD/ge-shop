@@ -19,7 +19,7 @@ export function Tab({ tabOpen, setTabOpen }: TabProps) {
   }, []);
 
   return (
-    <Wrapper tabOpen={tabOpen} className="bg-zinc-300 px-10 py-3 overflow-hidden">
+    <Wrapper tabOpen={tabOpen} className="bg-zinc-300 px-10 py-3 overflow-hidden sticky">
       <div className="text-zinc-500 text-3xl mb-4 md:hidden border-b border-zinc-500">
         <FaSearch className="m-2" />
       </div>

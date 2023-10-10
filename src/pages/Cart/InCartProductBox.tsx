@@ -34,17 +34,22 @@ export function InCartProductBox({ product }: Props) {
   }, [cartItems]);
 
   return (
-    <div className="bg-white shadow-sm rounded-xl w-9/12 m-2">
+    <div className="bg-white shadow-sm rounded-xl my-2 w-full">
       <Wrapper>
         <Container className="p-2">
           <div className="flex">
-            <Link to={`/product/${product.id}`}>
-              <div className="flex justify-center items-center h-36 w-36 mr-8">
-                <Img src={product.image} className="max-h-36" />
-              </div>
+            <Link
+              to={`/product/${product.id}`}
+              className="flex justify-center items-center sm:mr-8 sm:w-36"
+            >
+              <Img src={product.image} className="max-h-36 hidden sm:block" />
             </Link>
             <div>
-              <Title className="text-black font-semibold text-sm h-10">{product.title}</Title>
+              <Link to={`/product/${product.id}`}>
+                <Title className="text-black font-semibold text-sm h-10 mb-6 overflow-clip">
+                  {product.title}
+                </Title>
+              </Link>
               <p className="text-white bg-red-500 w-fit rounded-tr-xl rounded-br-xl px-2">
                 -{discount}%
               </p>
@@ -57,10 +62,10 @@ export function InCartProductBox({ product }: Props) {
                   </del>
                 </Price>
               </div>
-              <p className="text-green-600 font-semibold">Delivery in 10 days</p>
+              <p className="text-green-600 font-semibold text-sm">Delivery in 10 days</p>
             </div>
           </div>
-          <div className="flex items-center mx-5">
+          <div className="flex items-center mx-5 mt-3">
             <Button
               className="p-1 rounded-full"
               onClick={() => {

@@ -23,10 +23,10 @@ export function Cart() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center max-w-screen-xl h-[calc(100vh-64px)]">
-      <h1 className="text-white">Cart</h1>
-      <section className="flex justify-center">
-        <ProductList className="flex flex-col items-end overflow-y-auto w-[42vw]">
+    <div className="flex flex-col items-center w-fit ">
+      <h1 className="dark:text-white">Cart</h1>
+      <section className="flex flex-col-reverse md:flex-row justify-center">
+        <ProductList className="flex flex-col items-center overflow-y-auto min-h-fit">
           {productsFetchState === FetchState.LOADING && (
             <Modal>
               <ClipLoader color="#FFF" />
@@ -42,11 +42,11 @@ export function Cart() {
                   })}
               </>
             ) : (
-              <h1 className="mr-5"> Your Shopping Cart is Empty</h1>
+              <h1 className="mr-5 dark:text-white"> Your Shopping Cart is Empty</h1>
             ))}
         </ProductList>
-        <div className="mt-2">
-          <div className="text-xl font-semibold rounded-lg bg-white p-5 w-80 mb-4">
+        <div className="flex flex-col items-center mt-2 sm:ml-4">
+          <div className="text-xl font-semibold rounded-lg bg-white p-5 w-80 mb-2">
             <h1> Total: </h1>
             <h2 className="my-5 text-right">${totalAmount.toFixed(2)}</h2>
             <div className="flex flex-col">
@@ -67,7 +67,7 @@ export function Cart() {
               </button>
             </div>
           </div>
-          <div className="text-xl font-semibold rounded-lg bg-white p-5 w-80 my-4">
+          <div className="text-xl font-semibold rounded-lg bg-white p-5 w-80">
             <p>Pagar com</p>
             <Payments className="flex text-4xl my-5">
               <LiaCcVisa />

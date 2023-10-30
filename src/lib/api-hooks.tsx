@@ -31,8 +31,12 @@ export function useGetSingleProduct() {
       const res = await client.get(`/products/${id}`);
       const resData = res.data as ProductData;
 
-      setProduct(resData);
-      setProductFetchState(FetchState.SUCCESS);
+      if (!resData) {
+        throw new Error();
+      } else {
+        setProduct(resData);
+        setProductFetchState(FetchState.SUCCESS);
+      }
     } catch (error) {
       console.log(error);
       setProductFetchState(FetchState.ERROR);
@@ -65,8 +69,12 @@ export function useGetSingleCategory() {
       const res = await client.get(`/products/category/${category}`);
       const resData = res.data as Array<ProductData>;
 
-      setCategory(resData);
-      setCategoryFetchState(FetchState.SUCCESS);
+      if (resData.length === 0) {
+        throw new Error();
+      } else {
+        setCategory(resData);
+        setCategoryFetchState(FetchState.SUCCESS);
+      }
     } catch (error) {
       console.log(error);
       setCategoryFetchState(FetchState.ERROR);

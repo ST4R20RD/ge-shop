@@ -8,6 +8,7 @@ import { CountrySelector } from "./CountrySelector";
 import { ProductBox, RatingStars } from "../../components";
 import { ShopContext, ShopContextType } from "../../context/ShopContext";
 import Modal from "../../components/Modal";
+import { ErrorPage } from "../ErrorPage";
 
 export function Product() {
   const { productId } = useParams();
@@ -124,7 +125,7 @@ export function Product() {
           </div>
         </div>
       )}
-      {productFetchState === FetchState.ERROR && <div>Product Not Found</div>}
+      {productFetchState === FetchState.ERROR && <ErrorPage />}
     </>
   );
 }

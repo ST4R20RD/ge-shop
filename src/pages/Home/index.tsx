@@ -4,9 +4,11 @@ import { ProductBox } from "../../components";
 import { FetchState } from "../../utils/types";
 import { ClipLoader } from "react-spinners";
 import Modal from "../../components/Modal";
+import { ErrorPage } from "../ErrorPage";
 
 export function Home() {
   const [allProducts, getAllProducts, productsFetchState] = useGetAllProducts();
+
   useEffect(() => {
     getAllProducts();
     // eslint-disable-next-line
@@ -29,15 +31,7 @@ export function Home() {
           </div>
         </div>
       )}
-      {productsFetchState === FetchState.ERROR && (
-        <div className="flex items-center dark:text-white">
-          Could not Load the page. Please&nbsp;
-          <button className="text-blue-400 underline" onClick={() => window.location.reload()}>
-            Reload
-          </button>
-          !
-        </div>
-      )}
+      {productsFetchState === FetchState.ERROR && <ErrorPage />}
     </>
   );
 }

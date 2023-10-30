@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { FaUser, FaSearch } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineDiscount } from "react-icons/md";
 import { BsCartFill } from "react-icons/bs";
 import { TbWorld } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import styled, { StyleSheetManager } from "styled-components";
+import styled from "styled-components";
 import { Tab } from "./Tab";
+import { SearchBar } from "../SearchBar";
 
 export function Navbar() {
   const [tabOpen, setTabOpen] = useState<boolean>(false);
@@ -19,7 +20,7 @@ export function Navbar() {
             <button onClick={() => setTabOpen(!tabOpen)} className="mx-3">
               <FiMenu size={30} />
             </button>
-            <Link to="/">
+            <Link to="/" onClick={() => setTabOpen(false)}>
               <Logo>
                 <MdOutlineDiscount />
                 <h1>GE SHOP</h1>
@@ -27,9 +28,9 @@ export function Navbar() {
             </Link>
           </div>
           <RightSide className="text-2xl">
-            <div className="hidden md:flex">
+            <div className="hidden md:flex md:justify-between md:items-center">
+              <SearchBar />
               <TbWorld />
-              <FaSearch />
               <Link to="/Signup-Login">
                 <FaUser />
               </Link>
@@ -40,9 +41,7 @@ export function Navbar() {
           </RightSide>
         </NavbarDiv>
       </Container>
-      <StyleSheetManager shouldForwardProp={(prop) => prop !== "tabOpen"}>
-        {tabOpen && <Tab tabOpen={tabOpen} setTabOpen={setTabOpen} />}
-      </StyleSheetManager>
+      {tabOpen && <Tab tabOpen={tabOpen} setTabOpen={setTabOpen} />}
     </>
   );
 }
@@ -75,6 +74,7 @@ const Logo = styled.div`
 const RightSide = styled.div`
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   svg {
     margin: 0 15px;
   }

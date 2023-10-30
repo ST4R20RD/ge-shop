@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { useGetAllCategories } from "../../lib/api-hooks";
 import { useEffect } from "react";
-import { FaReact, FaSearch, FaUser } from "react-icons/fa";
+import { FaReact, FaUser } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
+import { SearchBar } from "../SearchBar";
 
 interface TabProps {
   tabOpen: boolean;
@@ -19,25 +20,25 @@ export function Tab({ tabOpen, setTabOpen }: TabProps) {
   }, []);
 
   return (
-    <Wrapper tabOpen={tabOpen} className="bg-zinc-300 px-10 py-3 overflow-hidden sticky">
-      <div className="text-zinc-500 text-3xl mb-4 md:hidden border-b border-zinc-500">
-        <FaSearch className="m-2" />
+    <Container tabOpen={tabOpen} className="bg-zinc-300 px-10 py-3 overflow-hidden sticky">
+      <div className="text-zinc-500 pl-0 p-4 mb-4 md:hidden border-b border-zinc-500">
+        <SearchBar />
       </div>
-      <Container className="md:max-w-screen-xl md:m-auto">
+      <Categories className="md:max-w-screen-xl md:m-auto">
         <h2>Categories</h2>
         {allCategories.map((category, index) => {
           return (
             <Link
               to={`/category/${category.toString()}`}
               onClick={() => setTabOpen(false)}
-              className="p-1 text-zinc-600 underline"
+              className="p-1 text-zinc-600 underline w-fit"
               key={index}
             >
               {category}
             </Link>
           );
         })}
-      </Container>
+      </Categories>
       <div className="text-zinc-500 text-3xl border-t border-zinc-500 py-4 my-2 md:hidden">
         <span className="flex items-center mb-2">
           <TbWorld />
@@ -54,7 +55,7 @@ export function Tab({ tabOpen, setTabOpen }: TabProps) {
           <p className="pl-2">Developed by Gonçalo Estrelado</p>
         </span>
       </a>
-    </Wrapper>
+    </Container>
   );
 }
 
@@ -62,8 +63,8 @@ interface WrapperProps {
   tabOpen: boolean;
 }
 
-const Wrapper = styled.div<WrapperProps>`
-  width: 80vw;
+const Container = styled.div<WrapperProps>`
+  width: 50vw;
   height: 100%;
   position: absolute;
   top: 64px;
@@ -78,7 +79,7 @@ const Wrapper = styled.div<WrapperProps>`
   }
 `;
 
-const Container = styled.div`
+const Categories = styled.div`
   display: flex;
   flex-direction: column;
   @media (min-width: 768px) {
@@ -132,38 +133,38 @@ const vertFadeOut = keyframes`
 `;
 
 const horizFadeIn = keyframes`
-0% {
+  0% {
     width: 0vw;
   }
   10% {
-    width: 8vw;
+    width: 5vw;
   }
   20% {
-    width: 16vw;
+    width: 10vw;
   }
   30% {
-    width: 24vw;
+    width: 15vw;
   }
   40% {
-    width: 32vw;
+    width: 20vw;
   }
   50% {
-    width: 40vw;
+    width: 25vw;
   }
   60% {
-    width: 48vw;
+    width: 30vw;
   }
   70% {
-    width: 56vw;
+    width: 35vw;
   }
   80% {
-    width: 64vw;
+    width: 40vw;
   }
   90% {
-    width: 72vw;
+    width: 45vw;
   }
   100% {
-    width: 80vw;
+    width: 50vw;
   }
   `;
 

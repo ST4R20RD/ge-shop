@@ -64,7 +64,7 @@ interface WrapperProps {
 }
 
 const Container = styled.div<WrapperProps>`
-  width: 50vw;
+  width: 60vw;
   height: 100%;
   position: absolute;
   top: 64px;

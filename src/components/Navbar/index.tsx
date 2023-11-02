@@ -14,7 +14,7 @@ export function Navbar() {
 
   return (
     <>
-      <Container className="bg-[#46B29D] dark:bg-slate-800">
+      <Container className="bg-mint dark:bg-midnight">
         <NavbarDiv className="max-w-screen-xl m-auto text-slate-800 dark:text-stone-400">
           <div className="flex items-center">
             <button onClick={() => setTabOpen(!tabOpen)} className="mx-3">

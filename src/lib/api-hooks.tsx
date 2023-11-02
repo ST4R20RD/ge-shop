@@ -82,3 +82,23 @@ export function useGetSingleCategory() {
   };
   return [categoryList, getCategory, categoryFetchState] as const;
 }
+
+export function useGetSearchProducts() {
+  const [productsFetchState, setProductsFetchState] = useState(FetchState.DEFAULT);
+  const [searchedProducts, setSearchedProducts] = useState<Array<ProductData["title"]>>([]);
+  const getSearchedProducts = async (searchString: string) => {
+    try {
+      setProductsFetchState(FetchState.LOADING);
+      const res = await client.get("/products");
+      const resData = res.data.filter(searchString) as Array<ProductData["title"]>;
+
+      setSearchedProducts(resData);
+      setProductsFetchState(FetchState.SUCCESS);
+    } catch (error) {
+      console.log(error);
+      setProductsFetchState(FetchState.ERROR);
+    }
+  };
+
+  return [searchedProducts, getSearchedProducts, productsFetchState] as const;
+}

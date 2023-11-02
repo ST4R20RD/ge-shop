@@ -3,11 +3,11 @@ import { FaUser } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineDiscount } from "react-icons/md";
 import { BsCartFill } from "react-icons/bs";
-import { TbWorld } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Tab } from "./Tab";
 import { SearchBar } from "../SearchBar";
+import { CurrencySelect } from "./CurrencySelect";
 
 export function Navbar() {
   const [tabOpen, setTabOpen] = useState<boolean>(false);
@@ -30,7 +30,7 @@ export function Navbar() {
           <RightSide className="text-2xl">
             <div className="hidden md:flex md:justify-between md:items-center">
               <SearchBar />
-              <TbWorld />
+              <CurrencySelect />
               <Link to="/Signup-Login">
                 <FaUser />
               </Link>

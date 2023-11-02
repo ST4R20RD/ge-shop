@@ -12,7 +12,9 @@ import Modal from "../../components/Modal";
 
 export function Cart() {
   const [allProducts, getAllProducts, productsFetchState] = useGetAllProducts();
-  const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext) as ShopContextType;
+  const { cartItems, getTotalCartAmount, checkout, selectedCurrency } = useContext(
+    ShopContext
+  ) as ShopContextType;
   const totalAmount = getTotalCartAmount();
 
   const navigate = useNavigate();
@@ -48,7 +50,11 @@ export function Cart() {
         <div className="flex flex-col items-center mt-2 sm:ml-4">
           <div className="text-xl font-semibold rounded-lg bg-white p-5 w-80 mb-2">
             <h1> Total: </h1>
-            <h2 className="my-5 text-right">${totalAmount.toFixed(2)}</h2>
+            <h2 className="my-5 text-right">
+              {selectedCurrency === "Dollar" && "$"}
+              {totalAmount.toFixed(2)}
+              {selectedCurrency === "Euro" && "€"}
+            </h2>
             <div className="flex flex-col">
               <button
                 className="rounded-md border p-5 py-3 my-2 text-red-600 text-xl bg-red-100"

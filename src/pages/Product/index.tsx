@@ -14,10 +14,8 @@ export function Product() {
   const { productId } = useParams();
   const [product, getProduct, productFetchState] = useGetSingleProduct();
   const [categoryList, getCategory, categoryFetchState] = useGetSingleCategory();
-  const { addToCart, cartItems } = useContext(ShopContext) as ShopContextType;
-  const priceInteger = product ? Math.trunc(product.price) : 0;
-  const priceDecimal = product && ((product.price - priceInteger) * 100).toFixed();
-  const discount = 50;
+  const { addToCart, cartItems, selectedCurrency } = useContext(ShopContext) as ShopContextType;
+  const price = product && (selectedCurrency === "Dollar" ? product.price : product.price * 0.94);
 
   const cartItemCount = () => {
     if (product) return cartItems[product.id];
@@ -64,21 +62,8 @@ export function Product() {
                     <RatingStars productRating={product.rating} big={true} />
                   </Rating>
                 </div>
-                <div>
-                  <Price className="flex items-end text-lg mb-2">
-                    <div className="flex items-end text-red-600">
-                      <p className="text-3xl">${priceInteger}</p>
-                      <p>{product.price - priceInteger > 0 && "," + priceDecimal}</p>
-                    </div>
-                    <del className="text-zinc-500 ml-2">
-                      ${(product.price * (1 + discount / 100)).toFixed(2)}
-                    </del>
-                    <p className="text-base ml-1 text-zinc-500"> {discount}% off</p>
-                  </Price>
-                  <p className="text-zinc-400">Prices include Taxes</p>
-                </div>
               </section>
-              <section className="flex flex-col justify-between w-64 bg-white p-5 m-2 rounded-lg min-w-[256px] max-h-[405px]">
+              <section className="flex flex-col justify-between w-64 bg-white p-5 m-2 rounded-lg min-w-[256px] ">
                 <div>
                   <SideSection>
                     Envio para: <CountrySelector />
@@ -94,6 +79,14 @@ export function Product() {
                   </SideSection>
                 </div>
                 <div className="flex flex-col items-center mt-2">
+                  <Price className="flex flex-col items-center text-lg mb-2">
+                    <p className="text-3xl">
+                      {selectedCurrency === "Dollar" && "$"}
+                      {price?.toFixed(2)}
+                      {selectedCurrency === "Euro" && "€"}
+                    </p>
+                    <p className="text-zinc-400">Prices include Taxes</p>
+                  </Price>
                   <button className="w-full text-white text-xl bg-red-600 rounded-full m-2 px-3 py-2">
                     Buy now
                   </button>

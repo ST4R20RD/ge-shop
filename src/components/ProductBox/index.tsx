@@ -11,8 +11,9 @@ interface Props {
 }
 
 export function ProductBox({ product }: Props) {
-  const { addToCart, cartItems } = useContext(ShopContext) as ShopContextType;
+  const { addToCart, cartItems, selectedCurrency } = useContext(ShopContext) as ShopContextType;
   const cartItemCount = cartItems[product.id];
+  const price = selectedCurrency === "Dollar" ? product.price : product.price * 0.94;
 
   return (
     <div className="bg-white shadow-md shadow-zinc-400 rounded-sm w-36 h-48 m-2">
@@ -39,7 +40,11 @@ export function ProductBox({ product }: Props) {
           >
             {cartItemCount > 0 ? <BsCartCheckFill size={20} /> : <BsCartPlus size={20} />}
           </Button>
-          <Price className="text-xl">{product.price.toFixed(2)}€</Price>
+          <Price className="text-xl">
+            {selectedCurrency === "Dollar" && "$"}
+            {price.toFixed(2)}
+            {selectedCurrency === "Euro" && "€"}
+          </Price>
         </div>
       </Wrapper>
     </div>

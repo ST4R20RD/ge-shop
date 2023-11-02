@@ -16,6 +16,8 @@ export type ShopContextType = {
   removeFromCart: (itemId: number) => void;
   updateCartItemCount: (newAmount: number, itemId: number) => void;
   checkout: () => void;
+  selectedCurrency: string;
+  handleCurrencyChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 export const ShopContext = createContext<ShopContextType | null>(null);
@@ -40,7 +42,9 @@ export function ShopContextProvider({ children }: ShopContextProviderChildren) {
           console.error(`Product id: ${productId} not found.`);
           continue;
         }
-        totalAmount += cartItems[item] * itemInfo.price;
+        totalAmount +=
+          cartItems[item] *
+          (selectedCurrency === "Dollar" ? itemInfo.price : itemInfo.price * 0.94);
       }
     }
     return totalAmount as number;
@@ -64,6 +68,15 @@ export function ShopContextProvider({ children }: ShopContextProviderChildren) {
     setCartItems({});
   };
 
+  const [selectedCurrency, setSelectedCurrency] = useState<string>("Dollar");
+
+  const handleCurrencyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    const selectedCurrency = selectedValue === "euro" ? "Euro" : "Dollar";
+    setSelectedCurrency(selectedCurrency);
+    localStorage.setItem("selectedCurrency", selectedCurrency);
+  };
+
   const contextValue = {
     cartItems,
     getTotalCartAmount,
@@ -71,6 +84,8 @@ export function ShopContextProvider({ children }: ShopContextProviderChildren) {
     removeFromCart,
     updateCartItemCount,
     checkout,
+    selectedCurrency,
+    handleCurrencyChange,
   };
   return <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>;
 }

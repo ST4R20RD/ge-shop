@@ -3,8 +3,8 @@ import styled, { keyframes } from "styled-components";
 import { useGetAllCategories } from "../../lib/api-hooks";
 import { useEffect } from "react";
 import { FaReact, FaUser } from "react-icons/fa";
-import { TbWorld } from "react-icons/tb";
 import { SearchBar } from "../SearchBar";
+import { CurrencySelect } from "./CurrencySelect";
 
 interface TabProps {
   tabOpen: boolean;
@@ -40,10 +40,7 @@ export function Tab({ tabOpen, setTabOpen }: TabProps) {
         })}
       </Categories>
       <div className="text-zinc-500 text-3xl border-t border-zinc-500 py-4 my-2 md:hidden">
-        <span className="flex items-center mb-2">
-          <TbWorld />
-          <p className="text-sm ml-2">Language</p>
-        </span>
+        <CurrencySelect />
         <Link to="/Signup-Login" className="flex items-center mb-2">
           <FaUser />
           <p className="text-sm ml-2">Account</p>

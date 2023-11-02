@@ -24,12 +24,7 @@ export function Category() {
           <ClipLoader color="#FFF" />
         </Modal>
       )}
-      {categoryFetchState === FetchState.SUCCESS && (
-        <div className="flex flex-col items-center">
-          <h1 className="text-black m-3">{category?.toUpperCase()}</h1>
-          <ProductList productList={categoryList} />
-        </div>
-      )}
+      {categoryFetchState === FetchState.SUCCESS && <ProductList productList={categoryList} />}
       {categoryFetchState === FetchState.ERROR && <ErrorPage />}
     </>
   );

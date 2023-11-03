@@ -40,7 +40,9 @@ export function Tab({ tabOpen, setTabOpen }: TabProps) {
         })}
       </Categories>
       <div className="text-zinc-500 text-3xl border-t border-zinc-500 py-4 my-2 md:hidden">
-        <CurrencySelect />
+        <div className="mb-4">
+          <CurrencySelect className="bg-zinc-300" />
+        </div>
         <Link to="/Signup-Login" className="flex items-center mb-2">
           <FaUser />
           <p className="text-sm ml-2">Account</p>
@@ -61,7 +63,7 @@ interface WrapperProps {
 }
 
 const Container = styled.div<WrapperProps>`
-  width: 60vw;
+  width: 320px;
   height: 100%;
   position: absolute;
   top: 64px;

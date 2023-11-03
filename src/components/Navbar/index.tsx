@@ -30,7 +30,7 @@ export function Navbar() {
           <RightSide className="text-2xl">
             <div className="hidden md:flex md:justify-between md:items-center">
               <SearchBar />
-              <CurrencySelect />
+              <CurrencySelect className="bg-mint dark:bg-midnight" />
               <Link to="/Signup-Login">
                 <FaUser />
               </Link>
@@ -75,7 +75,7 @@ const RightSide = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  svg {
+  a {
     margin: 0 15px;
   }
 `;

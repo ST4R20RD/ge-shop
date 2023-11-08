@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { useGetAllProducts } from "../../lib/api-hooks";
 import { FetchState } from "../../utils/types";
 import { ClipLoader } from "react-spinners";
-import Modal from "../../components/Modal";
 import { ErrorPage } from "../ErrorPage";
-import { ProductList } from "../../components/ProductList";
+import { Modal, ProductList } from "../../components";
 import styled from "styled-components";
 
 export function Home() {

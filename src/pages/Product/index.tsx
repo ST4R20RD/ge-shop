@@ -5,10 +5,9 @@ import { useGetSingleCategory, useGetSingleProduct } from "../../lib/api-hooks";
 import { FetchState, ProductData } from "../../utils/types";
 import { ClipLoader } from "react-spinners";
 import { CountrySelector } from "./CountrySelector";
-import { ProductBox, RatingStars } from "../../components";
 import { ShopContext, ShopContextType } from "../../context/ShopContext";
-import Modal from "../../components/Modal";
 import { ErrorPage } from "../ErrorPage";
+import { Modal, ProductBox, RatingStars } from "../../components";
 
 export function Product() {
   const { productId } = useParams();

@@ -8,7 +8,7 @@ import { FaApplePay, FaCcMastercard, FaGooglePay, FaPaypal, FaShieldAlt } from "
 import { LiaCcVisa } from "react-icons/lia";
 import styled from "styled-components";
 import { ClipLoader } from "react-spinners";
-import Modal from "../../components/Modal";
+import { Modal } from "../../components";
 
 export function Cart() {
   const [allProducts, getAllProducts, productsFetchState] = useGetAllProducts();

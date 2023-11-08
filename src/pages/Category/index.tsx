@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { useGetSingleCategory } from "../../lib/api-hooks";
 import { useParams } from "react-router-dom";
-import { ProductList } from "../../components/ProductList";
-import Modal from "../../components/Modal";
 import { ClipLoader } from "react-spinners";
 import { FetchState } from "../../utils/types";
 import { ErrorPage } from "../ErrorPage";
+import { Modal, ProductList } from "../../components";
 
 export function Category() {
   const [categoryList, getCategory, categoryFetchState] = useGetSingleCategory();

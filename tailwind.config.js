@@ -3,13 +3,17 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sueEllen: "Sue Ellen Francisco",
+        workSans: "Work Sans",
+      },
       colors: {
-        midnight: "#1E293B",
-        electric: "#5016F7",
-        coral: "#FA8559",
-        raspberry: "#EF1C5D",
-        royal: "#1625F7",
-        mint: "#46B29D",
+        pumpkin: "#FC7A1E",
+        majorelle: "#623CEA",
+        keppel: "#46B29D",
+        prussian: "#1E293B",
+        floral: "#FEF9EF",
+        cerise: "#EF1C5D",
       },
     },
   },

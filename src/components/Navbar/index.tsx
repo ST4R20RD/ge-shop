@@ -14,7 +14,7 @@ export function Navbar() {
 
   return (
     <>
-      <Container className="bg-mint dark:bg-midnight">
+      <Container className="bg-keppel dark:bg-prussian z-50">
         <NavbarDiv className="max-w-screen-xl m-auto text-slate-800 dark:text-stone-400">
           <div className="flex items-center">
             <button onClick={() => setTabOpen(!tabOpen)} className="mx-3">
@@ -30,7 +30,7 @@ export function Navbar() {
           <RightSide className="text-2xl">
             <div className="hidden md:flex md:justify-between md:items-center">
               <SearchBar />
-              <CurrencySelect className="bg-mint dark:bg-midnight" />
+              <CurrencySelect className="bg-keppel dark:bg-prussian" />
               <Link to="/Signup-Login">
                 <FaUser />
               </Link>

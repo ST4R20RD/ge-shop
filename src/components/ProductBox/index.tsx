@@ -16,7 +16,7 @@ export function ProductBox({ product }: Props) {
   const price = selectedCurrency === "Dollar" ? product.price : product.price * 0.94;
 
   return (
-    <div className="bg-white shadow-md shadow-zinc-400 rounded-sm w-36 h-48 m-2">
+    <div className="bg-white rounded-lg w-36 h-48 m-2">
       <Wrapper>
         <Link to={`/product/${product.id}`}>
           <Container className="p-2 w-full">

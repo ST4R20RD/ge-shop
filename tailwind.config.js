@@ -14,6 +14,8 @@ module.exports = {
         prussian: "#1E293B",
         floral: "#FEF9EF",
         cerise: "#EF1C5D",
+        cinnamonRose: "#B7757A",
+        sunset: "#FC915F",
       },
     },
   },

@@ -21,7 +21,7 @@ export function ProductBox({ product }: Props) {
         <Link to={`/product/${product.id}`}>
           <Container className="p-2 w-full">
             <Title className="text-zinc-800 text-sm text-center h-5">
-              {product.title.length >= 19 ? product.title.slice(0, 15) + "..." : product.title}
+              {product.title.length >= 19 ? product.title.slice(0, 13) + "..." : product.title}
             </Title>
             <div className="flex items-center justify-center h-20 bg-white p-2 my-3 w-28 rounded-lg">
               <Img src={product.image} className="max-h-20" />

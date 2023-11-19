@@ -41,7 +41,7 @@ export function EletronicSection() {
               position="center"
             />
           </CustomCarousel>
-          <div className="bg-sunset py-8 w-full overflow-hidden">
+          <div className=" bg-sunset py-4 w-full max-h-[232px] overflow-hidden">
             <ProductList productList={categoryList.slice(0, 4)} />
           </div>
         </section>

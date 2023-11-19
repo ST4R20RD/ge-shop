@@ -5,6 +5,7 @@ import { Modal } from "../../components";
 import { useEffect } from "react";
 import { useGetAllProducts } from "../../lib/api-hooks";
 import { Banner, CustomCarousel, ProductList } from "../../components";
+import { Link } from "react-router-dom";
 
 export default function ClothingSection() {
   const [allProducts, getAllProducts, productsFetchState] = useGetAllProducts();
@@ -51,8 +52,30 @@ export default function ClothingSection() {
               position="left"
             />
           </CustomCarousel>
-          <div className="bg-prussian py-8 w-full overflow-hidden">
-            <ProductList productList={[...allProducts.slice(0, 2), ...allProducts.slice(14, 16)]} />
+          <div className="flex flex-col items-center bg-prussian pb-4 w-full overflow-hidden">
+            <p className="bg-cerise w-fit py-1 px-4 mb-2 rounded-b-lg text-white font-workSans text-lg">
+              CHECK OUR OFFERS!
+            </p>
+            <div className="flex justify-around w-full">
+              <div className="text-center max-h-[232px] overflow-hidden">
+                <Link
+                  to={`/category/men's%20clothing`}
+                  className="p-1 text-zinc-400 underline w-fit"
+                >
+                  Men's clothing
+                </Link>
+                <ProductList productList={allProducts.slice(0, 2)} />
+              </div>
+              <div className="text-center max-h-[232px] overflow-hidden">
+                <Link
+                  to={`/category/women's%20clothing`}
+                  className="p-1 text-zinc-400 underline w-fit"
+                >
+                  Women's clothing
+                </Link>
+                <ProductList productList={allProducts.slice(14, 16)} />
+              </div>
+            </div>
           </div>
         </section>
       )}

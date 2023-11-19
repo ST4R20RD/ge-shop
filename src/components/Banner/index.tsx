@@ -13,10 +13,10 @@ export function Banner({ title, description, id, position }: BannerProps) {
       <img src={`images/${id}.png`} alt={`${id}`} />
       <Legend position={position}>
         <div>
-          <p className={`${title.className} font-sueEllen text-5xl mb-5`}>{title.string}</p>
-          <p className={`${description.className} font-workSans font-bold text-xl max-w-sm`}>
+          <Title className={`${title.className} font-sueEllen mb-5`}>{title.string}</Title>
+          <Description className={`${description.className} font-workSans font-bold max-w-sm`}>
             {description.string}
-          </p>
+          </Description>
         </div>
       </Legend>
     </div>
@@ -59,4 +59,12 @@ const Legend = styled.div<{ position: string }>`
   color: #000;
   font-size: 12px;
   margin-right: 40px;
+`;
+
+const Title = styled.p`
+  font-size: 4vw;
+`;
+
+const Description = styled.p`
+  font-size: 2vw;
 `;

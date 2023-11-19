@@ -17,6 +17,9 @@ module.exports = {
         cinnamonRose: "#B7757A",
         sunset: "#FC915F",
       },
+      screens: {
+        "1/2xl": "1470px",
+      },
     },
   },
   plugins: [],

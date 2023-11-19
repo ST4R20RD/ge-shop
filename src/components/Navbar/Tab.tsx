@@ -63,9 +63,10 @@ interface WrapperProps {
 }
 
 const Container = styled.div<WrapperProps>`
+  z-index: 10;
   width: 320px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 64px;
   opacity: ${(props) => (props.tabOpen ? "1" : "0")};
   animation: ${(props) => (props.tabOpen ? horizFadeIn : horizFadeOut)} 0.3s ease-in-out;

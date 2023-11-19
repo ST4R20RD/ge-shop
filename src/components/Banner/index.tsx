@@ -24,7 +24,6 @@ export function Banner({ title, description, id, position }: BannerProps) {
 }
 
 const Legend = styled.div<{ position: string }>`
-  z-index: 10;
   display: flex;
   ${(props) => {
     switch (props.position) {

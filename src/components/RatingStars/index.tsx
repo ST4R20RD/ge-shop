@@ -23,8 +23,10 @@ export function RatingStars({ productRating, big }: Props) {
             <BsStar key={index} size={big ? 20 : 12} />
           ))}
       </div>
-      {productRating.rate} ({productRating.count}
-      {big && " reviews"})
+      <div className="hidden sm:block">
+        {productRating.rate} ({productRating.count}
+        {big && " reviews"})
+      </div>
     </div>
   );
 }

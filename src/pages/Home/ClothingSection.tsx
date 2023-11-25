@@ -52,24 +52,24 @@ export default function ClothingSection() {
               position="left"
             />
           </CustomCarousel>
-          <div className="flex flex-col items-center bg-prussian pb-4 w-full overflow-hidden">
-            <p className="bg-cerise w-fit py-1 px-4 mb-2 rounded-b-lg text-white font-workSans text-lg">
+          <div className="flex flex-col items-center bg-prussian pb-8 w-full overflow-hidden">
+            <p className="bg-cerise w-fit py-1 px-4 mb-2 rounded-b-lg text-white font-workSans text-sm sm:text-lg">
               CHECK OUR OFFERS!
             </p>
             <div className="flex justify-around w-full">
-              <div className="text-center max-h-[232px] overflow-hidden">
+              <div className="text-center max-h-[232px]">
                 <Link
                   to={`/category/men's%20clothing`}
-                  className="p-1 text-zinc-400 underline w-fit"
+                  className="text-sm sm:text-base p-1 text-zinc-400 underline w-fit"
                 >
                   Men's clothing
                 </Link>
                 <ProductList productList={allProducts.slice(0, 2)} />
               </div>
-              <div className="text-center max-h-[232px] overflow-hidden">
+              <div className="text-center max-h-[232px]">
                 <Link
                   to={`/category/women's%20clothing`}
-                  className="p-1 text-zinc-400 underline w-fit"
+                  className="text-sm sm:text-base p-1 text-zinc-400 underline w-fit"
                 >
                   Women's clothing
                 </Link>

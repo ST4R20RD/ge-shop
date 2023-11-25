@@ -42,7 +42,7 @@ export default function JewelrySection() {
               position="right"
             />
           </CustomCarousel>
-          <div className="bg-cinnamonRose py-4 w-full max-h-[232px] overflow-hidden">
+          <div className="bg-cinnamonRose pt-4 pb-6 w-full max-h-[272px]">
             <ProductList productList={categoryList.slice(0, 4)} />
           </div>
         </section>

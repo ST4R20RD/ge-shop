@@ -16,44 +16,42 @@ export function ProductBox({ product }: Props) {
   const price = selectedCurrency === "Dollar" ? product.price : product.price * 0.94;
 
   return (
-    <div className="bg-white rounded-lg w-36 h-48 m-2">
-      <Wrapper>
-        <Link to={`/product/${product.id}`}>
-          <Container className="p-2 w-full">
-            <Title className="text-zinc-800 text-sm text-center h-5">
-              {product.title.length >= 19 ? product.title.slice(0, 13) + "..." : product.title}
-            </Title>
-            <div className="flex items-center justify-center h-20 bg-white p-2 my-3 w-28 rounded-lg">
-              <Img src={product.image} className="max-h-20" />
-            </div>
-            <Rating className="text-xs">
-              <RatingStars productRating={product.rating} />
-            </Rating>
-          </Container>
-        </Link>
-        <div className="flex items-center">
-          <Button
-            className="pr-2 rounded-full"
-            onClick={() => {
-              !cartItemCount && addToCart(product.id);
-            }}
-          >
-            {cartItemCount > 0 ? <BsCartCheckFill size={20} /> : <BsCartPlus size={20} />}
-          </Button>
-          <Price className="text-xl">
-            {selectedCurrency === "Dollar" && "$"}
-            {price.toFixed(2)}
-            {selectedCurrency === "Euro" && "€"}
-          </Price>
-        </div>
-      </Wrapper>
-    </div>
+    <Wrapper className="bg-white rounded-lg w-24 h-32 sm:w-36 sm:h-48 m-2">
+      <Link to={`/product/${product.id}`}>
+        <Container className="p-2 w-full">
+          <Title className="text-zinc-800 text-xs sm:text-sm text-center h-2 sm:h-5">
+            {product.title.length >= 19 ? product.title.slice(0, 13) + "..." : product.title}
+          </Title>
+          <div className="flex items-center justify-center w-24 h-10 sm:h-20 bg-white p-2 my-3 rounded-lg">
+            <Img src={product.image} className="max-h-10 sm:max-h-20" />
+          </div>
+          <Rating className="text-xs">
+            <RatingStars productRating={product.rating} />
+          </Rating>
+        </Container>
+      </Link>
+      <div className="flex items-center">
+        <Button
+          className="pr-2 rounded-full"
+          onClick={() => {
+            !cartItemCount && addToCart(product.id);
+          }}
+        >
+          {cartItemCount > 0 ? <BsCartCheckFill size={20} /> : <BsCartPlus size={20} />}
+        </Button>
+        <Price className="text-base sm:text-xl">
+          {selectedCurrency === "Dollar" && "$"}
+          {price.toFixed(2)}
+          {selectedCurrency === "Euro" && "€"}
+        </Price>
+      </div>
+    </Wrapper>
   );
 }
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 const Container = styled.div`

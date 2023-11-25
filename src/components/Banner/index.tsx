@@ -14,7 +14,7 @@ export function Banner({ title, description, id, position }: BannerProps) {
       <Legend position={position}>
         <div>
           <Title className={`${title.className} font-sueEllen mb-5`}>{title.string}</Title>
-          <Description className={`${description.className} font-workSans font-bold max-w-sm`}>
+          <Description className={`${description.className} font-workSans font-bold p-2`}>
             {description.string}
           </Description>
         </div>
@@ -47,8 +47,9 @@ const Legend = styled.div<{ position: string }>`
         return css`
           justify-content: center;
           align-items: start;
-          top: 40px;
+          top: 20px;
           text-align: center;
+          margin-bottom: 0;
         `;
     }
   }}
@@ -62,9 +63,10 @@ const Legend = styled.div<{ position: string }>`
 `;
 
 const Title = styled.p`
-  font-size: 4vw;
+  font-size: calc(3px + min(4vw, 45px));
 `;
 
 const Description = styled.p`
-  font-size: 2vw;
+  font-size: calc(3px + min(1vw, 15px));
+  text-align: left;
 `;

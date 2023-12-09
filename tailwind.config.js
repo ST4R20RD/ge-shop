@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         sueEllen: "Sue Ellen Francisco",
         workSans: "Work Sans",
+        inter: "inter",
       },
       colors: {
         pumpkin: "#FC7A1E",

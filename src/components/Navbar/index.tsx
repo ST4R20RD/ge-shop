@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
-import { FiMenu } from "react-icons/fi";
 import { MdOutlineDiscount } from "react-icons/md";
 import { BsCartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -8,19 +7,31 @@ import styled from "styled-components";
 import { Tab } from "./Tab";
 import { SearchBar } from "../SearchBar";
 import { CurrencySelect } from "./CurrencySelect";
+import { useGetAllCategories } from "../../lib/api-hooks";
+import SubNav from "./SubNav";
+import { FiMenu } from "react-icons/fi";
 
 export function Navbar() {
   const [tabOpen, setTabOpen] = useState<boolean>(false);
+  const [allCategories, getAllCategories] = useGetAllCategories();
+
+  const handleTabToggle = () => setTabOpen(!tabOpen);
+  const handleTabClose = () => setTabOpen(false);
+
+  useEffect(() => {
+    getAllCategories();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
       <Container className="bg-keppel dark:bg-prussian z-50">
-        <NavbarDiv className="max-w-screen-xl m-auto text-slate-800 dark:text-stone-400">
+        <NavbarDiv className="h-16 max-w-screen-xl m-auto text-slate-800 dark:text-stone-400">
           <div className="flex items-center">
-            <button onClick={() => setTabOpen(!tabOpen)} className="mx-3">
-              <FiMenu size={30} />
+            <button onClick={handleTabToggle} className="md:hidden flex items-center mx-3">
+              <FiMenu size={30} color="white" />
             </button>
-            <Link to="/" onClick={() => setTabOpen(false)}>
+            <Link to="/" onClick={handleTabClose}>
               <Logo>
                 <MdOutlineDiscount />
                 <h1>GE SHOP</h1>
@@ -40,8 +51,9 @@ export function Navbar() {
             </Link>
           </RightSide>
         </NavbarDiv>
+        <SubNav tabOpen={tabOpen} setTabOpen={setTabOpen} allCategories={allCategories} />
       </Container>
-      {tabOpen && <Tab tabOpen={tabOpen} setTabOpen={setTabOpen} />}
+      {tabOpen && <Tab tabOpen={tabOpen} setTabOpen={setTabOpen} allCategories={allCategories} />}
     </>
   );
 }
@@ -57,7 +69,6 @@ const NavbarDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4rem;
 `;
 
 const Logo = styled.div`

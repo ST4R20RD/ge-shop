@@ -10,13 +10,9 @@ interface Props {
 }
 
 export function InCartProductBox({ product }: Props) {
-  const { addToCart, removeFromCart, updateCartItemCount, cartItems } = useContext(
-    ShopContext
-  ) as ShopContextType;
-  const priceInteger = Math.trunc(product.price);
-  const priceDecimal = ((product.price - priceInteger) * 100).toFixed();
-
-  const discount = 50;
+  const { addToCart, removeFromCart, updateCartItemCount, cartItems, selectedCurrency } =
+    useContext(ShopContext) as ShopContextType;
+  const price = selectedCurrency === "Dollar" ? product.price : product.price * 0.94;
 
   const cartItemCount = cartItems[product.id];
 
@@ -50,16 +46,13 @@ export function InCartProductBox({ product }: Props) {
                   {product.title}
                 </Title>
               </Link>
-              <p className="text-white bg-red-500 w-fit rounded-tr-xl rounded-br-xl px-2">
-                -{discount}%
-              </p>
               <div>
-                <Price className="flex items-end text-red-600 text-lg mb-2">
-                  <p className="text-3xl">${priceInteger}</p>
-                  {product.price - priceInteger > 0 && "," + priceDecimal}
-                  <del className="text-zinc-500 ml-2">
-                    ${(product.price * (1 + discount / 100)).toFixed(2)}
-                  </del>
+                <Price className="flex items-end  text-lg mb-2">
+                  <p className="text-3xl">
+                    {selectedCurrency === "Dollar" && "$"}
+                    {price.toFixed(2)}
+                    {selectedCurrency === "Euro" && "€"}
+                  </p>
                 </Price>
               </div>
               <p className="text-green-600 font-semibold text-sm">Delivery in 10 days</p>

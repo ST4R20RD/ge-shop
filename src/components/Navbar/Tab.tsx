@@ -1,26 +1,21 @@
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-import { useGetAllCategories } from "../../lib/api-hooks";
-import { useEffect } from "react";
 import { FaReact, FaUser } from "react-icons/fa";
-import { TbWorld } from "react-icons/tb";
 import { SearchBar } from "../SearchBar";
+import { CurrencySelect } from "./CurrencySelect";
 
 interface TabProps {
   tabOpen: boolean;
   setTabOpen: (arg: boolean) => void;
+  allCategories: string[];
 }
 
-export function Tab({ tabOpen, setTabOpen }: TabProps) {
-  const [allCategories, getAllCategories] = useGetAllCategories();
-
-  useEffect(() => {
-    getAllCategories();
-    // eslint-disable-next-line
-  }, []);
-
+export function Tab({ tabOpen, setTabOpen, allCategories }: TabProps) {
   return (
-    <Container tabOpen={tabOpen} className="bg-zinc-300 px-10 py-3 overflow-hidden sticky">
+    <Container
+      tabOpen={tabOpen}
+      className="bg-zinc-300 px-10 py-3 top-16 md:top-24 overflow-hidden sticky"
+    >
       <div className="text-zinc-500 pl-0 p-4 mb-4 md:hidden border-b border-zinc-500">
         <SearchBar />
       </div>
@@ -40,10 +35,9 @@ export function Tab({ tabOpen, setTabOpen }: TabProps) {
         })}
       </Categories>
       <div className="text-zinc-500 text-3xl border-t border-zinc-500 py-4 my-2 md:hidden">
-        <span className="flex items-center mb-2">
-          <TbWorld />
-          <p className="text-sm ml-2">Language</p>
-        </span>
+        <div className="mb-4">
+          <CurrencySelect className="bg-zinc-300" />
+        </div>
         <Link to="/Signup-Login" className="flex items-center mb-2">
           <FaUser />
           <p className="text-sm ml-2">Account</p>
@@ -64,10 +58,10 @@ interface WrapperProps {
 }
 
 const Container = styled.div<WrapperProps>`
-  width: 60vw;
+  z-index: 10;
+  width: 320px;
   height: 100%;
-  position: absolute;
-  top: 64px;
+  position: fixed;
   opacity: ${(props) => (props.tabOpen ? "1" : "0")};
   animation: ${(props) => (props.tabOpen ? horizFadeIn : horizFadeOut)} 0.3s ease-in-out;
   @media (min-width: 768px) {

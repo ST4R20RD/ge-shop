@@ -60,10 +60,13 @@ const SearchBtn = styled.button<{ isOpen: boolean }>`
     ${(props) =>
       props.isOpen
         ? css`
-            animation: ${slideIn} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            animation: ${slideIn} 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
           `
         : css`
-            animation: ${slideOut} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            animation: ${slideOut} 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            input {
+              display: none;
+            }
           `}
   }
   svg {

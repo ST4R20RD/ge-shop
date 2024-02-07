@@ -14,7 +14,7 @@ export default function SubNav({ tabOpen, setTabOpen, allCategories }: Props) {
   const handleTabClose = () => setTabOpen(false);
 
   return (
-    <div className="hidden md:block bg-teal-700 h-8 border-zinc-300 border-y-2">
+    <div className="hidden md:block bg-teal-700 border-zinc-300 border-y-2">
       <div className="flex items-center justify-around max-w-screen-xl m-auto text-prussian font-inter">
         <button onClick={handleTabToggle} className="flex items-center mx-3">
           <FiMenu size={30} color="white" />

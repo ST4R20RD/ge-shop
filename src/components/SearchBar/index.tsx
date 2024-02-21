@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaSearch } from "react-icons/fa";
+import { IoIosSearch } from "react-icons/io";
 import styled, { css, keyframes } from "styled-components";
 
 export function SearchBar() {
@@ -37,9 +37,9 @@ export function SearchBar() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <FaSearch />
+        <IoIosSearch />
         <Input
-          className="rounded-md ml-4"
+          className="bg-transparent ml-2 h-6 border-b-2 placeholder:text-lg"
           isOpen={isOpen}
           placeholder="Search"
           value={searchString}

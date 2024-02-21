@@ -11,12 +11,13 @@ export function CurrencySelect({ className }: Props) {
   return (
     <div className="flex items-center">
       <TbWorld />
-      <select
-        onChange={handleCurrencyChange}
-        className={`${className} rounded-md px-2 text-lg outline-none `}
-      >
-        <option value="euro">Euro €</option>
-        <option value="dollar">Dollar $</option>
+      <select onChange={handleCurrencyChange} className={`${className} rounded-md px-2 text-lg outline-none `}>
+        <option value="euro" className="text-black">
+          Euro €
+        </option>
+        <option value="dollar" className="text-black">
+          Dollar $
+        </option>
       </select>
     </div>
   );

@@ -7,6 +7,7 @@ module.exports = {
         sueEllen: "Sue Ellen Francisco",
         workSans: "Work Sans",
         inter: "inter",
+        grotesque: "Darker Grotesque",
       },
       colors: {
         pumpkin: "#FC7A1E",

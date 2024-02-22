@@ -17,33 +17,41 @@ export function ProductBox({ product }: Props) {
 
   return (
     <Wrapper className="bg-white rounded-lg w-64 h-80  m-2">
+      <div>
+        <h5>Categories</h5>
+      </div>
       <Link to={`/product/${product.id}`}>
-        <Container className="p-2 w-full">
-          <Title className="text-zinc-800 text-xs sm:text-sm text-center h-2 sm:h-5">
+        {/* <Container className="p-2 w-full border border-red-600"> */}
+        {/* <Title className="text-zinc-800 text-xs sm:text-sm text-center h-2 sm:h-5">
             {product.title.length >= 19 ? product.title.slice(0, 13) + "..." : product.title}
-          </Title>
-          <div className="flex items-center justify-center w-24 h-10 sm:h-20 bg-white p-2 my-3 rounded-lg">
-            <Img src={product.image} className="max-h-10 sm:max-h-20" />
-          </div>
+          </Title> */}
+        <div className="flex items-center justify-center w-64 h-64 bg-white rounded-lg border border-green-900">
+          <Img src={product.image} className="w-full h-full border border-red-600" />
+        </div>
+        <Title className="text-zinc-800 text-xs w-36 sm:text-sm h-2 sm:h-5 border border-red-600">
+          {product.title.length >= 19 ? product.title.slice(0, 13) + "..." : product.title}
+        </Title>
+        <div className="flex items-start">
           <Rating className="text-xs">
             <RatingStars productRating={product.rating} />
           </Rating>
-        </Container>
+        </div>
+        {/* </Container> */}
       </Link>
       <div className="flex items-center">
-        <Button
+        {/* <Button
           className="pr-2 rounded-full"
           onClick={() => {
             !cartItemCount && addToCart(product.id);
           }}
         >
           {cartItemCount > 0 ? <BsCartCheckFill size={20} /> : <BsCartPlus size={20} />}
-        </Button>
-        <Price className="text-base sm:text-xl">
+        </Button> */}
+        {/* <Price className="text-base sm:text-xl">
           {selectedCurrency === "Dollar" && "$"}
           {price.toFixed(2)}
           {selectedCurrency === "Euro" && "€"}
-        </Price>
+        </Price> */}
       </div>
     </Wrapper>
   );
@@ -66,7 +74,7 @@ const Title = styled.p``;
 const Price = styled.p``;
 const Rating = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   width: 100%;
 `;
 const Button = styled.button`

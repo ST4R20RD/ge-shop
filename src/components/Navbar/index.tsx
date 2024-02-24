@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { LiaShoppingBagSolid } from "react-icons/lia";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Tab } from "./Tab";
@@ -52,13 +52,13 @@ export function Navbar() {
             })}
           </div>
           <Logo to="/" onClick={handleTabClose} className="absolute left-1/2">
-            <h1>AMIGO</h1>
+            <img src="https://i.ibb.co/bKqzpbv/AMIGOLogo-Dark.png" alt="logo" />
           </Logo>
           <RightSide className="text-2xl">
             <div className="hidden md:flex md:justify-between md:items-center">
               <SearchBar />
             </div>
-            <LiaShoppingBagSolid />
+            <HiOutlineShoppingBag />
           </RightSide>
         </NavbarDiv>
       </Container>

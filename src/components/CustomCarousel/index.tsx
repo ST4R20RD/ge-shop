@@ -7,7 +7,7 @@ interface Props {
 
 export function CustomCarousel({ children }: Props) {
   return (
-    <Carousel autoPlay showStatus={false} showThumbs={false}>
+    <Carousel autoPlay showStatus={false} showThumbs={false} className="w-full">
       {children}
     </Carousel>
   );

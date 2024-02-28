@@ -9,8 +9,8 @@ interface BannerProps {
 
 export function Banner({ title, description, id, position }: BannerProps) {
   return (
-    <div>
-      <img src={`images/${id}.png`} alt={`${id}`} />
+    <Container>
+      <img className="" src={`images/${id}.png`} alt={`${id}`} />
       <Legend position={position}>
         <div>
           <Title className={`${title.className} font-sueEllen mb-5`}>{title.string}</Title>
@@ -19,9 +19,19 @@ export function Banner({ title, description, id, position }: BannerProps) {
           </Description>
         </div>
       </Legend>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  height: 75vh;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right top;
+  }
+`;
 
 const Legend = styled.div<{ position: string }>`
   display: flex;

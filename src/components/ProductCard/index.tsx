@@ -6,11 +6,7 @@ import { RatingStars } from "../RatingStars";
 import { BsCartPlus, BsCartCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-interface Props {
-  product: ProductData;
-}
-
-export function ProductBox({ product }: Props) {
+export function ProductCard({ product }: { product: ProductData }) {
   const { addToCart, cartItems, selectedCurrency } = useContext(ShopContext) as ShopContextType;
   const cartItemCount = cartItems[product.id];
   const price = selectedCurrency === "Dollar" ? product.price : product.price * 0.94;

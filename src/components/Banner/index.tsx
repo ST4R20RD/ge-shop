@@ -3,14 +3,14 @@ import styled, { css } from "styled-components";
 interface BannerProps {
   title: { string: string; className: string };
   description: { string: string; className: string };
-  id: string;
+  url: string;
   position: string;
 }
 
-export function Banner({ title, description, id, position }: BannerProps) {
+export function Banner({ title, description, url, position }: BannerProps) {
   return (
     <Container>
-      <img className="" src={`images/${id}.png`} alt={`${id}`} />
+      <img className="" src={url} alt="banner" />
       <Legend position={position}>
         <div>
           <Title className={`${title.className} font-sueEllen mb-5`}>{title.string}</Title>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Tab } from "./Tab";
 import { SearchBar } from "../SearchBar";
-import { CurrencySelect } from "./CurrencySelect";
+import { CurrencySelect } from "../Footer/CurrencySelect";
 import { useGetAllCategories } from "../../lib/api-hooks";
 import { FiMenu } from "react-icons/fi";
 
@@ -16,6 +16,28 @@ export function Navbar() {
   const handleTabToggle = () => setTabOpen(!tabOpen);
   const handleTabClose = () => setTabOpen(false);
 
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const scrollingDown = currentScrollPos > prevScrollPos;
+
+      setVisible(!scrollingDown || currentScrollPos === 0);
+      setIsScrolled(currentScrollPos > 50);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
   useEffect(() => {
     getAllCategories();
     // eslint-disable-next-line
@@ -23,12 +45,17 @@ export function Navbar() {
 
   return (
     <div>
-      <Container className="bg-neutral-600 z-50">
+      <Container
+        visible={visible}
+        isScrolled={isScrolled}
+        className={`transition-all ${isScrolled ? "bg-neutral-600" : "bg-transparent"} ${
+          visible ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
         <div className="bg-black h-8">
           <div className="flex justify-between max-w-screen-2xl m-auto px-2 py-1 text-white font-grotesque font-medium">
             <span>Free returns within 60 days</span>
             <div className="md:flex hidden">
-              <CurrencySelect className="bg-transparent mr-6" />
               <NavLink to="/Signup-Login">Log in</NavLink>
             </div>
           </div>
@@ -37,7 +64,7 @@ export function Navbar() {
           <button onClick={handleTabToggle} className="md:hidden flex items-center mx-3">
             <FiMenu size={30} color="white" />
           </button>
-          <div className="md:block hidden">
+          <nav className="md:block hidden">
             {allCategories.map((category, index) => {
               return (
                 <NavLink
@@ -50,7 +77,7 @@ export function Navbar() {
                 </NavLink>
               );
             })}
-          </div>
+          </nav>
           <Logo to="/" onClick={handleTabClose} className="absolute left-1/2">
             <img src="https://i.ibb.co/bKqzpbv/AMIGOLogo-Dark.png" alt="logo" />
           </Logo>
@@ -67,11 +94,17 @@ export function Navbar() {
   );
 }
 
-const Container = styled.nav`
+interface Props {
+  visible: boolean;
+  isScrolled: boolean;
+}
+
+const Container = styled.header<Props>`
   overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 50;
 `;
 
 const NavLink = styled(Link)`

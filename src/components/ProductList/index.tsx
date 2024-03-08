@@ -1,15 +1,21 @@
 import { ProductData } from "../../utils/types";
-import { ProductBox } from "../ProductBox";
+import { ProductCard } from "../ProductCard";
+import { RecomendationCard } from "../RecomendationCard";
 
 interface ProductListProps {
   productList: ProductData[];
+  type?: String;
 }
 
-export function ProductList({ productList }: ProductListProps) {
+export function ProductList({ productList, type = "Product" }: ProductListProps) {
   return (
-    <div className="flex flex-wrap justify-evenly content-start items-center overflow-hidden h-36 sm:h-52">
+    <div className="flex flex-wrap justify-evenly content-start items-center overflow-hidden">
       {productList.map((product: ProductData) => {
-        return <ProductBox key={product.id} product={product} />;
+        if (type === "Product") {
+          return <ProductCard key={product.id} product={product} />;
+        } else {
+          return <RecomendationCard key={product.id} product={product} />;
+        }
       })}
     </div>
   );

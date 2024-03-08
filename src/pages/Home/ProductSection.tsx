@@ -5,7 +5,7 @@ import { Banner, CustomCarousel, Modal, ProductList } from "../../components";
 import { ClipLoader } from "react-spinners";
 import { ErrorPage } from "../ErrorPage";
 
-export function EletronicSection() {
+export default function ProductSection() {
   const [categoryList, getCategory, categoryFetchState] = useGetSingleCategory();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export function EletronicSection() {
                 string: "For your projects and with the planet",
                 className: "text-teal-600",
               }}
-              id="Banner5"
+              url="/images/Banner5.png"
               position="center"
             />
             <Banner
@@ -37,11 +37,11 @@ export function EletronicSection() {
                 string: "For your projects and with the planet",
                 className: "text-teal-600",
               }}
-              id="Banner5"
+              url="/images/Banner5.png"
               position="center"
             />
           </CustomCarousel>
-          <div className=" bg-sunset pt-4 pb-6 w-full max-h-[272px]">
+          <div className="pt-4 pb-6 w-full">
             <ProductList productList={categoryList.slice(0, 4)} />
           </div>
         </section>

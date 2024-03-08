@@ -6,44 +6,52 @@ import { RatingStars } from "../RatingStars";
 import { BsCartPlus, BsCartCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-interface Props {
-  product: ProductData;
-}
-
-export function ProductBox({ product }: Props) {
+export function ProductCard({ product }: { product: ProductData }) {
   const { addToCart, cartItems, selectedCurrency } = useContext(ShopContext) as ShopContextType;
   const cartItemCount = cartItems[product.id];
   const price = selectedCurrency === "Dollar" ? product.price : product.price * 0.94;
 
   return (
-    <Wrapper className="bg-white rounded-lg w-24 h-32 sm:w-36 sm:h-48 m-2">
-      <Link to={`/product/${product.id}`}>
-        <Container className="p-2 w-full">
-          <Title className="text-zinc-800 text-xs sm:text-sm text-center h-2 sm:h-5">
-            {product.title.length >= 19 ? product.title.slice(0, 13) + "..." : product.title}
-          </Title>
-          <div className="flex items-center justify-center w-24 h-10 sm:h-20 bg-white p-2 my-3 rounded-lg">
-            <Img src={product.image} className="max-h-10 sm:max-h-20" />
+    <Wrapper className="bg-white w-60 h-96 m-2 font-grotesque">
+      <Link to={`/product/${product.id}`} className="w-full h-full">
+        <Container className="p-3 h-full">
+          <div className="w-full">
+            <div className="flex justify-start bg-zinc-200 pl-2 w-28">
+              <p className="font-bold text-sm">{product.category}</p>
+            </div>
           </div>
-          <Rating className="text-xs">
-            <RatingStars productRating={product.rating} />
-          </Rating>
+          <div className="flex items-center justify-center bg-white p-2 my-3 rounded-lg">
+            <Img src={product.image} className="max-h-48" />
+          </div>
+          <div className="flex justify-between w-full">
+            <div className="text-xs">
+              <Title className="text-zinc-800 font-bold text-center h-2 sm:h-5">
+                {product.title.split(" ").slice(0, 3).join(" ")}
+              </Title>
+              <Price className="font-medium">
+                {selectedCurrency === "Dollar" && "$"}
+                {price.toFixed(2)}
+                {selectedCurrency === "Euro" && "€"}
+              </Price>
+            </div>
+            <div className="flex flex-col justify-between items-end">
+              <p>O O O</p>
+              <Rating className="text-xs">
+                <RatingStars productRating={product.rating} />
+              </Rating>
+            </div>
+          </div>
         </Container>
       </Link>
       <div className="flex items-center">
-        <Button
+        {/* <Button
           className="pr-2 rounded-full"
           onClick={() => {
             !cartItemCount && addToCart(product.id);
           }}
         >
           {cartItemCount > 0 ? <BsCartCheckFill size={20} /> : <BsCartPlus size={20} />}
-        </Button>
-        <Price className="text-base sm:text-xl">
-          {selectedCurrency === "Dollar" && "$"}
-          {price.toFixed(2)}
-          {selectedCurrency === "Euro" && "€"}
-        </Price>
+        </Button> */}
       </div>
     </Wrapper>
   );
@@ -59,7 +67,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: calc(100% - 24px);
 `;
 const Img = styled.img``;
 const Title = styled.p``;
@@ -67,7 +74,6 @@ const Price = styled.p``;
 const Rating = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 100%;
 `;
 const Button = styled.button`
   color: red;

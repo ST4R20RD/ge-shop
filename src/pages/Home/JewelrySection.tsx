@@ -29,7 +29,7 @@ export default function JewelrySection() {
                 string: "We work with communities to bring you high-quality jewelry",
                 className: "bg-cinnamonRose text-rose-600 rounded-md pr-4 py-2",
               }}
-              id="Banner4"
+              url="Banner4"
               position="right"
             />
             <Banner
@@ -38,11 +38,11 @@ export default function JewelrySection() {
                 string: "We work with communities to bring you high-quality jewelry",
                 className: "bg-cinnamonRose text-rose-600 rounded-md pr-4 py-2",
               }}
-              id="Banner4"
+              url="Banner4"
               position="right"
             />
           </CustomCarousel>
-          <div className="bg-cinnamonRose pt-4 pb-6 w-full max-h-[272px]">
+          <div className="pt-4 pb-6 w-full max-h-[272px]">
             <ProductList productList={categoryList.slice(0, 4)} />
           </div>
         </section>

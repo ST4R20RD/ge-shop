@@ -7,7 +7,7 @@ import { ClipLoader } from "react-spinners";
 import { CountrySelector } from "./CountrySelector";
 import { ShopContext, ShopContextType } from "../../context/ShopContext";
 import { ErrorPage } from "../ErrorPage";
-import { Modal, ProductBox, RatingStars } from "../../components";
+import { Modal, ProductCard, RatingStars } from "../../components";
 
 export function Product() {
   const { productId } = useParams();
@@ -86,9 +86,7 @@ export function Product() {
                     </p>
                     <p className="text-zinc-400">Prices include Taxes</p>
                   </Price>
-                  <button className="w-full text-white text-xl bg-red-600 rounded-full m-2 px-3 py-2">
-                    Buy now
-                  </button>
+                  <button className="w-full text-white text-xl bg-red-600 rounded-full m-2 px-3 py-2">Buy now</button>
                   <button
                     onClick={() => !cartItemCount() && addToCart(product.id)}
                     className="w-full text-red-600 text-xl bg-red-200 rounded-full m-2 px-3 py-2"
@@ -105,11 +103,9 @@ export function Product() {
             {categoryFetchState === FetchState.SUCCESS && (
               <div className="flex flex-wrap justify-center content-center items-center p-10">
                 {categoryList
-                  .filter(
-                    (categoryProduct: ProductData) => categoryProduct.id !== Number(product.id)
-                  )
+                  .filter((categoryProduct: ProductData) => categoryProduct.id !== Number(product.id))
                   .map((product: ProductData) => {
-                    return <ProductBox key={product.id} product={product} />;
+                    return <ProductCard key={product.id} product={product} />;
                   })}
               </div>
             )}

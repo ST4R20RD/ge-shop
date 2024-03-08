@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { FaReact, FaUser } from "react-icons/fa";
 import { SearchBar } from "../SearchBar";
-import { CurrencySelect } from "./CurrencySelect";
+import { CurrencySelect } from "../Footer/CurrencySelect";
 
 interface TabProps {
   tabOpen: boolean;
@@ -12,10 +12,7 @@ interface TabProps {
 
 export function Tab({ tabOpen, setTabOpen, allCategories }: TabProps) {
   return (
-    <Container
-      tabOpen={tabOpen}
-      className="bg-zinc-300 px-10 py-3 top-16 md:top-24 overflow-hidden sticky"
-    >
+    <Container tabOpen={tabOpen} className="bg-zinc-300 px-10 py-3 top-16 md:top-24 overflow-hidden sticky">
       <div className="text-zinc-500 pl-0 p-4 mb-4 md:hidden border-b border-zinc-500">
         <SearchBar />
       </div>

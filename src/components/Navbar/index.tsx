@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { Tab } from "./Tab";
 import { SearchBar } from "../SearchBar";
-import { CurrencySelect } from "./CurrencySelect";
+import { CurrencySelect } from "../Footer/CurrencySelect";
 import { useGetAllCategories } from "../../lib/api-hooks";
 import { FiMenu } from "react-icons/fi";
 
@@ -56,7 +56,6 @@ export function Navbar() {
           <div className="flex justify-between max-w-screen-2xl m-auto px-2 py-1 text-white font-grotesque font-medium">
             <span>Free returns within 60 days</span>
             <div className="md:flex hidden">
-              <CurrencySelect className="bg-transparent mr-6" />
               <NavLink to="/Signup-Login">Log in</NavLink>
             </div>
           </div>
